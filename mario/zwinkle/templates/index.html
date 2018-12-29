@@ -32,7 +32,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">SULISTYO ARDANI</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -42,11 +42,11 @@
               {% block content %}
               {% if user.is_authenticated %}
 
-              <a class="nav-link js-scroll-trigger" href="{% url 'account_logout' %}">logout</a>
+                <a class="nav-link js-scroll-trigger" href="{% url 'account_logout' %}">logout</a>
 
               {% else %}
 
-              <a class="nav-link js-scroll-trigger" href="{% url 'account_login' %}">login</a>
+                <a class="nav-link js-scroll-trigger" href="{% url 'account_login' %}">login</a>
 
               {% endif %}
               {% endblock %}
@@ -71,13 +71,13 @@
         <div class="row">
           <div class="col-lg-10 mx-auto">
             <h1 class="text-uppercase">
-              <strong>Your Favorite Source of Free Bootstrap Themes</strong>
+              <strong>PORTOFOLIO PYTHON FRAMEWORK DJANGO 2.1</strong>
             </h1>
             <hr>
           </div>
           <div class="col-lg-8 mx-auto">
-            <p class="text-faded mb-5">Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your template and start going, no strings attached!</p>
-            <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
+            <p class="text-faded mb-5">Website ini dibuat sebagai bentuk kemampuan dalam mengolah backend menggunakan bahasa pemrograman python framework Django</p>
+            <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'reviews:blog' %}">Create a Post</a>
           </div>
         </div>
       </div>
@@ -89,7 +89,7 @@
           <div class="col-lg-8 mx-auto text-center">
             <h2 class="section-heading text-white">We've got what you need!</h2>
             <hr class="light my-4">
-            <p class="text-faded mb-4">Start Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use. No strings attached!</p>
+            <p class="text-faded mb-4">Website ini dibuat sebagai bentuk kemampuan dalam mengolah backend menggunakan bahasa pemrograman python framework Django</p>
             <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Get Started!</a>
           </div>
         </div>

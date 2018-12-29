@@ -7,8 +7,6 @@ class konten(models.Model):
     isi = models.TextField()
     author = models.CharField(max_length=30, null=True)
 
-
-
     def __str__(self):
         return "{}".format(self.judul)
 
@@ -39,3 +37,11 @@ class Article(models.Model):
 
     class Meta:
         ordering = ('headline',)
+
+class PostModel(models.Model):
+    judul   = models.CharField(max_length=100)
+    isi   = models.CharField(max_length=100)
+    kategori   = models.CharField(max_length=100)
+
+    def __str__(self):
+        return "{}.{}".format(self.id,self.judul)

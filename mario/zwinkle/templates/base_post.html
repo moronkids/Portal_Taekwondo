@@ -1,0 +1,21 @@
+{% block content %}
+<h1>{{page_title}}</h1>
+<a href="{% url 'reviews:create' %}">buat postingan</a>
+<div class="login">
+    <form method="post">
+        {% for post in PostView %}
+            <a>{{forloop.counter}}</a>
+
+            <h1>{{post.judul}}</h1>
+            <p>{{post.isi}}</p>
+            <p>{{post.kategori}}</p>
+            <a href="{% url "reviews:delete" post.id %}">delete</a>
+            <a href="{% url "reviews:update" post.id %}">update</a>
+        {% endfor%}
+    </form>
+</div>
+{% endblock %}
+
+
+
+

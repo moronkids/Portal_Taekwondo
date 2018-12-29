@@ -1,4 +1,4 @@
-#!/Volumes/Data/django2.1/venv/bin/python
+#!/Users/spacetroopers/Documents/Portofolio_Django/venv/bin/python
 
 # -*- coding: utf-8 -*-
 import re
