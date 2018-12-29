@@ -21,6 +21,6 @@ from mario import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include(('zwinkle.urls', 'zwinkle'), namespace='reviews')),
-    path('', views.home),  # new
+    path('', views.home, name='rumah'),  # new
     path('accounts/', include('allauth.urls')),
 ]
