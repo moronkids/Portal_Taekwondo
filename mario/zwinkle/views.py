@@ -21,6 +21,7 @@ def home_post(request):
     return render(request, 'base_post.html', context)
 #def create(request):
 
+@login_required(redirect_field_name='create')
 def create(request):
     PostData = PostForm(request.POST or None)
     if request.method == 'POST':
@@ -34,10 +35,12 @@ def create(request):
     }
     return render(request, 'post/posting.html', context)
 
+@login_required(redirect_field_name='delete')
 def delete(request, delete_id):
     PostModel.objects.filter(id=delete_id).delete()
     return redirect('/blog')
 
+@login_required(redirect_field_name='update')
 def update(request, update_id):
     PostUpdate = PostModel.objects.get(id=update_id)
 
