@@ -1,3 +1,4 @@
+from django.forms import TextInput, Textarea
 from django.db import models
 
 # Create your models here.
@@ -40,8 +41,11 @@ class Article(models.Model):
 
 class PostModel(models.Model):
     judul   = models.CharField(max_length=100)
-    isi   = models.CharField(max_length=100)
+    isi   = models.CharField(max_length=1000)
     kategori   = models.CharField(max_length=100)
 
     def __str__(self):
         return "{}.{}".format(self.id,self.judul)
+
+
+
