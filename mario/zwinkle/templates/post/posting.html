@@ -51,8 +51,12 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
 body {
 
 	font-family: 'Open Sans', sans-serif;
-	background: #092756;
+	background: #008080;
 	color: white;
+}
+
+.form-control {
+  margin-bottom:10px;
 }
 </style>
   </head>
@@ -91,17 +95,14 @@ body {
     <!-- Page Content -->
     <div class="container">
       <div class="jumbotron vertical-center" style="background:inherit">
-            <form method="POST">
-              {% block content %}
-                  {% csrf_token%}
-                  <table>
-
-                      {{PostData.as_table}}
-                  </table>
-
-                  <button type="submit" class="btn btn-primary">Kirim</button>
-              {% endblock %}
-            </form>
+          <form method="POST">
+          {% csrf_token %}
+          <div class="form-group" style="margin-bottom:10px">
+              {{PostData.label}}
+              {{PostData}}
+              <button type="submit" class="btn btn-primary">Kirim</button>
+          </div>
+    </form>
       </div>
 
     </div>

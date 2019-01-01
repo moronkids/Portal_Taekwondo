@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 def tes(request):
     return render(request, 'tes.html')
 
-@login_required(redirect_field_name='blog')
+
 def home_post(request):
     PostTemp = PostModel.objects.all()
     print(PostTemp)

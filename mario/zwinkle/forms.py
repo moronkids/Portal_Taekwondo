@@ -12,12 +12,33 @@ class PostForm(ModelForm):
         model = PostModel
         fields = [
         'judul',
+        'penulis',
         'isi',
         'kategori',
         ]
 
+
         widgets = {
-            'judul':Textarea(attrs={'cols':30, 'rows':1, 'placeholder':'masukan judul'}),
-            'isi':Textarea(attrs={'cols':75, 'rows':10}),
-            'kategori':Textarea(attrs={'cols':30, 'rows':1}),
+            'judul':forms.TextInput(attrs={
+                'class':'form-control',
+
+                'placeholder':'masukan judul'
+            }),
+            'penulis': forms.TextInput(attrs={
+                'class': 'form-control',
+
+                'placeholder': 'masukan penulis'
+            }),
+            'isi':forms.Textarea(attrs={
+
+                'class': 'form-control',
+                'placeholder': 'masukan isi'
+            }),
+
+
+            'kategori':forms.Select(attrs={
+
+                'class': 'form-control',
+                'choices':'CHOICES',
+            }),
         }

@@ -39,10 +39,20 @@ class Article(models.Model):
     class Meta:
         ordering = ('headline',)
 
+CHOICES = (
+    ('Python', 'Python'),
+    ('Django', 'Django'),
+    ('Django Rest Framework', 'Django Rest Framework'),
+)
 class PostModel(models.Model):
     judul   = models.CharField(max_length=100)
+    penulis   = models.CharField(max_length=100)
     isi   = models.CharField(max_length=1000)
-    kategori   = models.CharField(max_length=100)
+    kategori   = models.CharField(
+        max_length=100,
+        choices=CHOICES,
+        default=1,
+    )
 
     def __str__(self):
         return "{}.{}".format(self.id,self.judul)
