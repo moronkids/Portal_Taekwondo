@@ -106,9 +106,9 @@ body {
                 {% for post in PostView %}
                     {% csrf_token %}
                     <h2 style="padding-top:50px">{{post.judul}}</h2>
-                    <p>Penulis : {{post.penulis}}</p>
+                <p>Penulis : <b>{{post.penulis}}</b></p>
                     <p style="text-align:justify">{{post.isi}}</p>
-                    <p >Kategori : {{post.kategori}}</p>
+                <p >Kategori : <b>{{post.kategori}}</b></p>
                     {% if request.user.is_authenticated %}
                     <button type="button" class="btn btn-primary" onclick="location.href='{% url 'reviews:delete' post.id %}'">Delete</button>
 

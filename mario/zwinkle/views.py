@@ -15,7 +15,7 @@ def home_post(request):
     PostTemp = PostModel.objects.all()
     print(PostTemp)
     context = {
-        'page_title':'CRUD Django 2.1',
+        'page_title':'Post List Detail',
         'PostView':PostTemp,
     }
     return render(request, 'base_post.html', context)
