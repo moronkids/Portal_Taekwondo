@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from . models import konten, PostModel
 from . forms import PostForm
+from rest_framework import generics
 from allauth.account.forms import LoginForm
 from django.contrib.auth.decorators import login_required
 
