@@ -58,4 +58,11 @@ class PostModel(models.Model):
         return "{}.{}".format(self.id,self.judul)
 
 
+class krida_model(models.Model):
+    nama = models.CharField(max_length=30)
+    umur = models.CharField(max_length=30)
+    penguji = models.CharField(max_length=30)
+    sabuk = models.CharField(max_length=30)
 
+    def __str__(self):
+        return "{}.{}".format(self.id,self.nama)

@@ -1,5 +1,5 @@
 from django import forms
-from .models import PostModel
+from .models import PostModel, krida_model
 from django.forms import ModelForm, Textarea, CharField
 
 #class PostForm(forms.Form):
@@ -42,3 +42,13 @@ class PostForm(ModelForm):
                 'choices':'CHOICES',
             }),
         }
+
+class krida_form(ModelForm):
+    class Meta:
+        model = krida_model
+        fields = [
+            'nama',
+            'umur',
+            'penguji',
+            'sabuk',
+        ]
