@@ -16,7 +16,7 @@ def home_post(request):
     PostTemp = PostModel.objects.all()
     print(PostTemp)
     context = {
-        'page_title':'Post List Detail',
+        'page_title':'Krida Taekwondo News',
         'PostView':PostTemp,
     }
     return render(request, 'base_post.html', context)
@@ -83,7 +83,7 @@ def krida_create(request):
 
         return redirect('reviews:krida')
     context = {
-        'page_title': 'Create Post Krida',
+        'page_title': 'Tambah Peserta',
         'kridadata':kridadata,
     }
     return render(request, 'post/posting_krida.html', context)
@@ -111,7 +111,7 @@ def updatekrida(request, update_id_krida):
 
         return redirect('reviews:krida')
     context = {
-        'page_title':'Update Post',
+        'page_title':'Update Peserta',
         'kridadata':kridadata,
     }
     return render(request, 'post/posting_krida.html', context)

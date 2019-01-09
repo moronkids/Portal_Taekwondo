@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>BarKrida Taekwondo</title>
+    <title>Krida Taekwondo</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -58,7 +58,7 @@ body {
   <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <nav class="navbar navbar-expand-lg navbar-dark static-top" style="background-color:#F08080;">
       <div class="container">
         <a class="navbar-brand" href="{% url 'rumah' %}">Krida Taekwondo</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,48 +84,53 @@ body {
         </div>
       </div>
     </nav>
+    <br>
+<h1 style="text-align:center;">Peserta Ujian Tingkat UTI PRO Jogja</h1>
+<br>
 
-
-    <!-- Page Content -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 {% block content %}
-    <div class="container" style="padding-top:10px">
+<div class="container">
     {% if request.user.is_authenticated %}
-        <button type="button" class="btn btn-primary" onclick="location.href='{% url 'reviews:create' %}'">Buat Postingan</button>
+<button type="button" class="btn btn-primary" onclick="location.href='{% url 'reviews:createkrida' %}'">Tambah Peserta</button></table>
+   {% endif %}
+    <p></p>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Nama</th>
+      <th scope="col">Umur</th>
+      <th scope="col">Penguji</th>
+      <th scope="col">Sabuk</th>
+        {% if request.user.is_authenticated %}
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
         {% endif %}
-        <div class="jumbotron vertical-center" style="background:inherit">
+    </tr>
+  </thead>
+  <tbody>
+  {% for krida in kridaView %}
+  {% csrf_token %}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{krida.nama}}</td>
+      <td>{{krida.umur}}</td>
+      <td>{{krida.penguji}}</td>
+      <td>{{krida.sabuk}}</td>
+        {% if request.user.is_authenticated %}
+        <td><button type="button" class="btn btn-success" onclick="location.href='{% url 'reviews:updatekrida' krida.id %}'">Update</button></td>
+        <td><button type="button" class="btn btn-danger" onclick="location.href='{% url 'reviews:deletekrida' krida.id %}'">Delete</button></td>
+        {% endif %}
+    </tr>
+  {% endfor %}
+  </tbody>
 
-          <h1 style="text-align:center">{{page_title}}</h1>
 
 
-            <form method="post" >
-                {% for post in PostView %}
-                    {% csrf_token %}
-                    <h2 style="padding-top:50px">{{post.judul}}</h2>
-                <p>Penulis : <b>{{post.penulis}}</b></p>
-                    <p style="text-align:justify">{{post.isi}}</p>
-                <p >Kategori : <b>{{post.kategori}}</b></p>
-                    {% if request.user.is_authenticated %}
-                    <button type="button" class="btn btn-primary" onclick="location.href='{% url 'reviews:delete' post.id %}'">Delete</button>
-
-                    <button type="button" class="btn btn-primary" onclick="location.href='{% url 'reviews:update' post.id %}'">Update</button>
-                    {% endif %}
-                {% endfor%}
-            </form>
-
-      </div>
-
-    </div>
+</table>
+</div>
 {% endblock %}
-
-
-    <!-- Bootstrap core JavaScript -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-
-  </body>
-
-</html>
-
-
 
 
