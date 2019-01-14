@@ -9,6 +9,7 @@ class PostForm(ModelForm):
         fields = [
         'judul',
         'penulis',
+        'gambar',
         'isi',
         'kategori',
         ]
@@ -37,7 +38,6 @@ class PostForm(ModelForm):
                 'class': 'form-control',
                 'choices':'CHOICES',
             }),
-
 
         }
 

@@ -11,7 +11,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('create/', views.create, name='create'),
-    path('foto/', views.fotoview, name='foto'),
+
     path('createkrida/', views.krida_create, name='createkrida'),
     path('', views.home_post, name="blog"),
     path('krida/', views.krida, name="krida"),

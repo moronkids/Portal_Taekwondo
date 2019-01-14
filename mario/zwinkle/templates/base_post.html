@@ -54,8 +54,8 @@ body {
   <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-      <div class="container">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'rumah' %}">Krida Taekwondo</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -63,18 +63,20 @@ body {
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home
+              <a class="nav-link" href="{% url 'reviews:blog'%}">Blog
                 <span class="sr-only">(current)</span>
               </a>
             </li>
+                <a class="nav-link" href="{% url 'reviews:krida' %}">Ujian</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'reviews:administrasi' %}">Administrasi</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'reviews:hasil' %}">Nilai</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
             </li>
           </ul>
         </div>
@@ -89,17 +91,19 @@ body {
         <button type="button" class="btn btn-primary" onclick="location.href='{% url 'reviews:create' %}'">Buat Postingan</button>
         {% endif %}
         <div class="jumbotron vertical-center" style="background:inherit">
-{% for n in img %}
-<img src="{{ n.photo.url }}">
-{% endfor %}
+
+
           <h1 style="text-align:center">{{page_title}}</h1>
+{% for n in tampil %}
+            <img src="{{n.photo.url}}" width="240">
+            {% endfor %}
 
-
-            <form method="post" >
+            <form method="post" enctype="multipart/form-data">
                 {% for post in PostView %}
                     {% csrf_token %}
                     <h2 style="padding-top:50px">{{post.judul}}</h2>
                 <p>Penulis : <b>{{post.penulis}}</b></p>
+  <center><img src="{{post.gambar.url}}" width="500" align="center"></center>
                     <p style="text-align:justify">{{post.isi}}</p>
                 <p >Kategori : <b>{{post.kategori}}</b></p>
                     {% if request.user.is_authenticated %}
@@ -123,3 +127,4 @@ body {
   </body>
 
 </html>
+

@@ -13,7 +13,7 @@ def fotoview(request):
     context = {
         'tampil':tampil
     }
-    return render(request, 'post/foto.html', context)
+    return render(request, 'base_post.html', context)
 
 
 #------------
@@ -25,26 +25,31 @@ def tes(request):
 
 def home_post(request):
     PostTemp = PostModel.objects.all()
+    tampil = foto.objects.all()
     print(PostTemp)
     context = {
         'page_title':'Krida Taekwondo News',
         'PostView':PostTemp,
+        'tampil': tampil
     }
     return render(request, 'base_post.html', context)
 
-@login_required(redirect_field_name='create')
 def create(request):
-    PostData = PostForm(request.POST or None)
     if request.method == 'POST':
+        PostData = PostForm(request.POST, request.FILES)
         if PostData.is_valid():
             PostData.save()
-
-        return redirect('reviews:blog')
+            return redirect('reviews:blog')
+    else:
+        PostData = PostForm()
     context = {
         'page_title': 'Create Post',
         'PostData':PostData,
     }
     return render(request, 'post/posting.html', context)
+
+
+
 
 @login_required(redirect_field_name='delete')
 def delete(request, delete_id):
