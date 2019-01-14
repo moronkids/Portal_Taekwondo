@@ -36,7 +36,7 @@ def home_post(request):
 
 def create(request):
     if request.method == 'POST':
-        PostData = PostForm(request.POST, request.FILES)
+        PostData = PostForm(request.POST, request.FILES or None)
         if PostData.is_valid():
             PostData.save()
             return redirect('reviews:blog')
@@ -68,10 +68,12 @@ def update(request, update_id):
     }
     PostData = PostForm(request.POST or None, initial=data, instance=PostUpdate)
     if request.method == 'POST':
+        PostData = PostForm(request.POST or None, request.FILES, initial=data, instance=PostUpdate)
         if PostData.is_valid():
             PostData.save()
 
         return redirect('reviews:blog')
+
     context = {
         'page_title':'Update Post',
         'PostData':PostData,

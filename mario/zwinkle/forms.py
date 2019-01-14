@@ -41,6 +41,10 @@ class PostForm(ModelForm):
 
         }
 
+    def __init__(self, *args, **kwargs):
+        super(PostForm, self).__init__(*args, **kwargs)
+        self.fields['gambar'].required = False
+
 
 class krida_form(ModelForm):
     class Meta:

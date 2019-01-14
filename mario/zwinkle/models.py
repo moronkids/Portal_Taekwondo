@@ -53,7 +53,7 @@ CHOICES = (
 class PostModel(models.Model):
     judul   = models.CharField(max_length=100)
     penulis   = models.CharField(max_length=100)
-    gambar = models.ImageField(upload_to='images', null=True)
+    gambar = models.FileField(upload_to='images', null=True)
     isi   = models.CharField(max_length=1000)
     kategori   = models.CharField(
         max_length=100,
@@ -102,4 +102,3 @@ class krida_model(models.Model):
 
     def __str__(self):
         return "{}.{}".format(self.id,self.umur)
-
