@@ -1,11 +1,7 @@
 from django import forms
 from .models import PostModel, krida_model
-from django.forms import ModelForm, Textarea, CharField
+from django.forms import ModelForm
 
-#class PostForm(forms.Form):
- #   judul = forms.CharField(max_length=100)
-  #  isi = forms.CharField(max_length=100)
-   # kategori = forms.CharField(max_length=100)
 
 class PostForm(ModelForm):
     class Meta:
@@ -41,14 +37,37 @@ class PostForm(ModelForm):
                 'class': 'form-control',
                 'choices':'CHOICES',
             }),
+
+
         }
+
 
 class krida_form(ModelForm):
     class Meta:
+
         model = krida_model
         fields = [
-            'nama',
+
+            'name',
             'umur',
             'penguji',
             'sabuk',
+            'hasilujian',
+            'pembayaran',
+            'view',
         ]
+        widgets = {
+            'pembayaran': forms.Select(attrs={
+                'class': 'forms-control',
+                'choices': 'nominal',
+            }),
+            'hasilujian': forms.Select(attrs={
+                'class': 'forms-control',
+                'choices': 'hasil_ujian',
+            }),
+            'view': forms.Select(attrs={
+                'class': 'forms-control',
+                'choices': 'status',
+            }),
+
+        }

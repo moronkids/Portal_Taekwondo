@@ -1,13 +1,15 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import buat_login, Publication, Article, PostModel
+from .models import buat_login, Publication, Article, PostModel, foto
 
 
 
 admin.site.register(buat_login)
 admin.site.register(Publication)
 admin.site.register(Article)
+admin.site.register(PostModel)
+admin.site.register(foto)
 
 
 from django.db import models
