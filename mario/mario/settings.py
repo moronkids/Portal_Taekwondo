@@ -22,7 +22,7 @@ SECRET_KEY = '4@kiq+=&7ob)j5i)otztgadssaj4do)#rui$jsvwc@b95$c^1a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = ('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ['*']
 
@@ -112,7 +112,7 @@ WSGI_APPLICATION = 'mario.wsgi.application'
 # }
 DATABASES = {
     'default': dj_database_url.config(
-        default=config('DATABASE_URL')
+        default=('DATABASE_URL')
     )
 }
 
