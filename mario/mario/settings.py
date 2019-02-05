@@ -18,13 +18,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 #SECRET_KEY = '4@kiq+=&7ob)j5i)otztgadssaj4do)#rui$jsvwc@b95$c^1a'
-SECRET_KEY = '4@kiq+=&7ob)j5i)otztgadssaj4do)#rui$jsvwc@b95$c^1a'
+SECRET_KEY = 'os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 DEBUG = os.environ.get('DEBUG', False)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [''0.0.0.0', 'localhost', '127.0.0.1','skripsi-deploy.herokuapp.com'']
 
 
 # Application definition
@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'widget_tweaks',
     'django_filters',
-    'dj_database_url'
+    'dj_database_url',
+    'whitenoise.runserver_nostatic'
     ]
 SITE_ID = 1
 
@@ -111,6 +112,7 @@ WSGI_APPLICATION = 'mario.wsgi.application'
 #         'PORT': '',
 #     }
 # }
+import dj_database_url
 DATABASES = {
     'default': dj_database_url.config(
         default=('DATABASE_URL')
