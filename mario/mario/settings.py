@@ -88,7 +88,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'mario.wsgi.application'
+WSGI_APPLICATION = 'mario.mario.wsgi.application'
 
 
 # Database
