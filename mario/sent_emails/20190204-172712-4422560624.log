@@ -1,0 +1,18 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: [example.com] Please Confirm Your E-mail Address
+From: webmaster@localhost
+To: kintil13@gmail.com
+Date: Mon, 04 Feb 2019 17:27:12 -0000
+Message-ID: <154930123269.985.14757807379609861022@1.0.0.127.in-addr.arpa>
+
+Hello from example.com!
+
+You're receiving this e-mail because user kintil13 has given yours as an e-mail address to connect their account.
+
+To confirm this is correct, go to http://127.0.0.1:8000/accounts/confirm-email/NA:1gqi1Y:vvBPw3zI4j5U-1xKbeO7arc8w0I/
+
+Thank you from example.com!
+example.com
+-------------------------------------------------------------------------------

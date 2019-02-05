@@ -1,0 +1,94 @@
+{% extends "base_krida.html"  %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="container-fluid">
+<div class="jumbotron vertical-center" style="background:inherit;">
+
+<h1 style="text-align:center;padding-bottom:50px;">Hasil Ujian Tingkat UTI PRO Jogja</h1>
+    <form method="get">
+        <div class="form-group col-md-6">
+            {{ filter.form.name.label_tag }}
+              {% render_field filter.form.name class="form-control" %}
+              {{ filter.form.hasilujian.label_tag }}
+              {% render_field filter.form.hasilujian class="form-control" %}
+            </div>
+        <div style="padding-left:15px;">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+
+     <table class="table table-hover" style="background:#C8CBDC;">
+  <thead>
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Nama</th>
+      <!--<th scope="col">Umur</th>-->
+      <!--<th scope="col">Penguji</th>-->
+      <th scope="col">Sabuk</th>
+        <th>Hasil Ujian</th>
+        {% if request.user.is_authenticated %}
+
+        <th>Pembayaran</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+        {% endif %}
+    </tr>
+  </thead>
+  <tbody>
+
+  {% for user in filter.qs %}
+    {% csrf_token %}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{user.name}}</td>
+      <!--<td>{{user.umur}}</td>-->
+      <!--<td>{{user.penguji}}</td>-->
+
+
+      <td>{{user.sabuk}}</td>
+        <td>{{user.hasilujian}}</td>
+              {% if request.user.is_authenticated %}
+
+      <td>{{user.pembayaran}}</td>
+        <td align="right"><button type="button" class="btn btn-success" onclick="location.href='{% url 'reviews:updatekrida' user.id %}'">Update</button></td>
+        <td align="right"><button type="button" class="btn btn-danger" onclick="location.href='{% url 'reviews:deletekrida' user.id %}'">Delete</button></td>
+        {% endif %}
+
+    </tr>
+  {% endfor %}
+  <br>
+
+  {% for krida in kridaView %}
+  {% csrf_token %}
+    <tr>
+        {% if request.user.is_authenticated %}
+        <td align="right"><button type="button" class="btn btn-success" onclick="location.href='{% url 'reviews:updatekrida' krida.id %}'">Update</button></td>
+        {% endif %}
+    </tr>
+  {% endfor %}
+  </tbody>
+
+
+
+</table>
+
+  <table style="width:100%;">
+    <tbody>
+      <tr>
+        <td><i>*)Peserta wajib hadir tepat waktu</i></td>
+        {% if request.user.is_authenticated %}
+        <td align="right"><button type="button" class="btn btn-warning" onclick="location.href='{% url 'reviews:deleteall' %}'">Reset Peserta</button></td>
+        <td align="right"><button type="button" class="btn btn-primary" onclick="location.href='{% url 'reviews:createkrida' %}'">Tambah Peserta</button></td>
+        {% endif %}
+      </tr>
+    <tr>
+      <td><i>**)Peserta wajib melunasi administrasi dan syarat yang berlaku</i></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+{% endblock %}
+
+
