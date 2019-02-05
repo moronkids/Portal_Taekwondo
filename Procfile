@@ -1,1 +1,1 @@
-web: gunicorn mario.wsgi.application --log-file
+web: gunicorn mario.zwinkle.wsgi:application --log-file
