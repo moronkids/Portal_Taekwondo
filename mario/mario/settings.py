@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'widget_tweaks',
     'django_filters',
+    'dj_database_url'
     ]
 SITE_ID = 1
 
