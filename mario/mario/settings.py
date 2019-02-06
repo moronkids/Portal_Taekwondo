@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django_filters',
     'dj_database_url',
     'whitenoise.runserver_nostatic',
+    'zwinkle',
     ]
 SITE_ID = 1
 
