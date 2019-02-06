@@ -25,3 +25,4 @@ static3==0.7.0
 Unipath==1.0
 urllib3==1.24.1
 whitenoise==3.2
+django-heroku
