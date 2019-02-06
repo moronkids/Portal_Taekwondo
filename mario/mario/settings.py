@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ['skripsi-deploy.herokuapp.com', 'localhost', '0.0.0.0', '127.0.
 # Application definition
 
 INSTALLED_APPS = [
+    'mario.zwinkle',
     'django.contrib.admin',
     'django.contrib.sites',
     'django.contrib.auth',
@@ -43,8 +44,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'django_filters',
     'dj_database_url',
-    'whitenoise.runserver_nostatic',
-    'mario.zwinkle',
+    'whitenoise.runserver_nostatic'
     ]
 SITE_ID = 1
 
