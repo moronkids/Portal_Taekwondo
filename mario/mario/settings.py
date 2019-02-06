@@ -70,7 +70,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'mario.urls'
+ROOT_URLCONF = 'mario.mario.urls'
 
 TEMPLATES = [
     {
