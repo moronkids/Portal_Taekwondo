@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ['skripsi-deploy.herokuapp.com', 'localhost', '0.0.0.0', '127.0.
 # Application definition
 
 INSTALLED_APPS = [
+    'zwinkle',
     'django.contrib.admin',
     'django.contrib.sites',
     'django.contrib.auth',
@@ -37,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'zwinkle',
+
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
