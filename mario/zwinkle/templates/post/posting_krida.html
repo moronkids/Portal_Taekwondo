@@ -63,13 +63,18 @@ body {
   <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-dark bg-dark">
+    <div class="pos-f-t">
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark p-4">
+      <h4 class="text-white">Collapsed content</h4>
+      <span class="text-muted">Toggleable via the navbar brand.</span>
+    </div>
+  </div>
+  <nav class="navbar navbar-dark bg-dark">
       <div class="container">
         <a class="navbar-brand" href="{% url 'rumah' %}">Start Bootstrap</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
               <a class="nav-link" href="#">Home
@@ -86,9 +91,11 @@ body {
               <a class="nav-link" href="#">Contact</a>
             </li>
           </ul>
-        </div>
-      </div>
-    </nav>
+        </button>
+        <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+</div>
 
 
     <!-- Page Content -->
