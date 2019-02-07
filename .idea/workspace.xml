@@ -12,57 +12,83 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/mario/zwinkle/templates/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4215">
-              <caret line="281" column="36" selection-start-line="281" selection-start-column="36" selection-end-line="281" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jquery.min.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mario/zwinkle/static/js_index/jquery.min.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="jquery.magnific-popup.min.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mario/zwinkle/static/js_index/jquery.magnific-popup.min.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="scrollreveal.min.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mario/zwinkle/static/js_index/scrollreveal.min.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="jquery.easing.min.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mario/zwinkle/static/js_index/jquery.easing.min.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="creative.min.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mario/zwinkle/static/js_index/creative.min.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="bootstrap.bundle.min.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mario/zwinkle/static/js_index/bootstrap.bundle.min.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="creative.min.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mario/zwinkle/static/css_index/creative.min.css">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="magnific-popup.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mario/zwinkle/static/css_index/magnific-popup.css">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mario/zwinkle/templates/index.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="57">
+                  <caret line="275" column="30" lean-forward="true" selection-start-line="275" selection-start-column="30" selection-end-line="275" selection-end-column="30" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+            <entry file="file://$USER_HOME$/Downloads/startbootstrap-creative-gh-pages-2/index.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="3840">
+                  <caret line="256" lean-forward="true" selection-start-line="256" selection-end-line="256" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="jquery.min.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mario/zwinkle/static/js_index/jquery.min.js">
+              <provider selected="true" editor-type-id="text-editor" />
+            </entry>
+          </file>
+          <file leaf-file-name="jquery.magnific-popup.min.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mario/zwinkle/static/js_index/jquery.magnific-popup.min.js">
+              <provider selected="true" editor-type-id="text-editor" />
+            </entry>
+          </file>
+          <file leaf-file-name="scrollreveal.min.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mario/zwinkle/static/js_index/scrollreveal.min.js">
+              <provider selected="true" editor-type-id="text-editor" />
+            </entry>
+          </file>
+          <file leaf-file-name="jquery.easing.min.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mario/zwinkle/static/js_index/jquery.easing.min.js">
+              <provider selected="true" editor-type-id="text-editor" />
+            </entry>
+          </file>
+          <file leaf-file-name="creative.min.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mario/zwinkle/static/js_index/creative.min.js">
+              <provider selected="true" editor-type-id="text-editor" />
+            </entry>
+          </file>
+          <file leaf-file-name="bootstrap.bundle.min.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mario/zwinkle/static/js_index/bootstrap.bundle.min.js">
+              <provider selected="true" editor-type-id="text-editor" />
+            </entry>
+          </file>
+          <file leaf-file-name="creative.min.css" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mario/zwinkle/static/css_index/creative.min.css">
+              <provider selected="true" editor-type-id="text-editor" />
+            </entry>
+          </file>
+          <file leaf-file-name="magnific-popup.css" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mario/zwinkle/static/css_index/magnific-popup.css">
+              <provider selected="true" editor-type-id="text-editor" />
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/mario/zwinkle/templates/index.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="90">
+                  <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -153,6 +179,14 @@
               <item name="Basic-Django-2.1" type="462c0819:PsiDirectoryNode" />
               <item name="mario" type="462c0819:PsiDirectoryNode" />
               <item name="zwinkle" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css_index" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Basic-Django-2.1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Basic-Django-2.1" type="462c0819:PsiDirectoryNode" />
+              <item name="mario" type="462c0819:PsiDirectoryNode" />
+              <item name="zwinkle" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -226,7 +260,7 @@
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1366" height="697" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16951673" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.16951673" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -566,15 +600,15 @@
     </entry>
     <entry file="file://$USER_HOME$/Downloads/startbootstrap-creative-gh-pages-2/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-166">
-          <caret line="251" column="14" lean-forward="true" selection-start-line="251" selection-start-column="14" selection-end-line="251" selection-end-column="14" />
+        <state relative-caret-position="3840">
+          <caret line="256" lean-forward="true" selection-start-line="256" selection-end-line="256" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mario/zwinkle/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4215">
-          <caret line="281" column="36" selection-start-line="281" selection-start-column="36" selection-end-line="281" selection-end-column="36" />
+        <state relative-caret-position="90">
+          <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
         </state>
       </provider>
     </entry>
