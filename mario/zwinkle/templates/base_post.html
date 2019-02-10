@@ -90,7 +90,7 @@ body {
     <!-- Page Content -->
 {% block content %}
     <div class="container" style="padding-top:10px">
-    {% if request.user.is_authenticated %}
+    {% if request.user.is_staff %}
         <button type="button" class="btn btn-primary" onclick="location.href='{% url 'reviews:create' %}'">Buat Postingan</button>
         {% endif %}
         <div class="jumbotron vertical-center" style="background:inherit">
@@ -106,7 +106,7 @@ body {
   <center><img src="{{post.gambar.url}}" width="500" align="center"></center><br>
                     <p style="text-align:justify">{{post.isi}}</p>
                 <p >Kategori : <b>{{post.kategori}}</b></p>
-                    {% if request.user.is_authenticated %}
+                        {% if request.user.is_staff %}
                     <button type="button" class="btn btn-primary" onclick="location.href='{% url 'reviews:delete' post.id %}'">Delete</button>
 
                     <button type="button" class="btn btn-primary" onclick="location.href='{% url 'reviews:update' post.id %}'">Update</button>

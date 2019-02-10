@@ -44,7 +44,8 @@
       <!--<td>{{user.penguji}}</td>-->
       <td>{{user.sabuk}}</td>
         <td>{{user.pembayaran}}</td>
-              {% if request.user.is_authenticated %}
+                  {% if request.user.is_staff %}
+                    <!--jika bukan staff ingin menggunakan user biasa gunakan is_authenticated-->
 <td>{{user.hasilujian}}</td>
 <td>{{user.view}}</td>
         <td align="right"><button type="button" class="btn btn-success" onclick="location.href='{% url 'reviews:updatekrida' user.id %}'">Update</button></td>
@@ -58,7 +59,7 @@
   {% for krida in kridaView %}
   {% csrf_token %}
     <tr>
-        {% if request.user.is_authenticated %}
+            {% if request.user.is_staff %}
         <td align="right"><button type="button" class="btn btn-success" onclick="location.href='{% url 'reviews:updatekrida' krida.id %}'">Update</button></td>
         {% endif %}
     </tr>
@@ -73,7 +74,7 @@
     <tbody>
       <tr>
         <td><i>*)Pembayaran merupakan total uang yang telah di bayarkan</i></td>
-        {% if request.user.is_authenticated %}
+            {% if request.user.is_staff %}
         <td align="right"><button type="button" class="btn btn-warning" onclick="location.href='{% url 'reviews:deleteall' %}'">Reset Peserta</button></td>
         <td align="right"><button type="button" class="btn btn-primary" onclick="location.href='{% url 'reviews:createkrida' %}'">Tambah Peserta</button></td>
         {% endif %}

@@ -5,6 +5,9 @@ from . forms import PostForm, krida_form
 from allauth.account.forms import LoginForm
 from django.contrib.auth.decorators import login_required
 from .filters import kridafilter
+from django import template
+
+register = template.Library()
 
 #---------- view foto -----
 
@@ -22,7 +25,7 @@ def fotoview(request):
 def tes(request):
     return render(request, 'tes.html')
 
-
+@register.filter(name='superuser')
 def home_post(request):
     PostTemp = PostModel.objects.all()
     tampil = foto.objects.all()
