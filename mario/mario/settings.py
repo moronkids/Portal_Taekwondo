@@ -30,7 +30,7 @@ ALLOWED_HOSTS = ['skripsi-deploy.herokuapp.com', 'localhost', '0.0.0.0', '127.0.
 # Application definition
 
 INSTALLED_APPS = [
-    'mario.zwinkle',
+    'zwinkle',
     'django.contrib.admin',
     'django.contrib.sites',
     'django.contrib.auth',
@@ -74,7 +74,7 @@ MIDDLEWARE = [
 
 ]
 
-ROOT_URLCONF = 'mario.mario.urls'
+ROOT_URLCONF = 'mario.urls'
 
 TEMPLATES = [
     {
@@ -106,22 +106,22 @@ WSGI_APPLICATION = 'mario.wsgi.application'
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'djangogirls',
-#         'USER': 'name',
-#         'PASSWORD': '',
-#         'HOST': 'localhost',
-#         'PORT': '',
-#     }
-# }
-import dj_database_url
 DATABASES = {
-    'default': dj_database_url.config(
-        default=('DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'krida_taekwondo',
+        'USER': 'name',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
 }
+# import dj_database_url
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=('DATABASE_URL')
+#     )
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -163,10 +163,14 @@ STATIC_ROOT = os.path.join('/Users/spacetroopers/Documents/Basic-Django-2.1', 's
 #STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 STATIC_URL = '/static/'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT = '/Users/spacetroopers/Documents/Basic-Django-2.1/mario/media'
+MEDIA_ROOT = '/Users/spacetroopers/Documents/DJANGO/Basic-Django-2.1/mario/media'
+
+
+SESSION_COOKIE_AGE = 3*60 # set just 10 seconds to test
+SESSION_SAVE_EVERY_REQUEST = True

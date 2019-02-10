@@ -16,13 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView # new
-from mario.mario import views
+from mario import views
 from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('blog/', include(('mario.zwinkle.urls', 'zwinkle'), namespace='reviews')),
+    path('blog/', include(('zwinkle.urls', 'zwinkle'), namespace='reviews')),
     path('', views.home, name='rumah'),  # new
     path('accounts/', include('allauth.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
