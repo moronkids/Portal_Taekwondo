@@ -44,16 +44,16 @@
       <!--<td>{{user.penguji}}</td>-->
       <td>{{user.sabuk}}</td>
         <td>{{user.pembayaran}}</td>
-                  {% if request.user.is_staff %}
-                    <!--jika bukan staff ingin menggunakan user biasa gunakan is_authenticated-->
-<td>{{user.hasilujian}}</td>
-<td>{{user.view}}</td>
-        <td align="right"><button type="button" class="btn btn-success" onclick="location.href='{% url 'reviews:updatekrida' user.id %}'">Update</button></td>
-        <td align="right"><button type="button" class="btn btn-danger" onclick="location.href='{% url 'reviews:deletekrida' user.id %}'">Delete</button></td>
-        {% endif %}
+          {% if request.user.is_staff %}
+            <!--jika bukan staff ingin menggunakan user biasa gunakan is_authenticated-->
+        <td>{{user.hasilujian}}</td>
+        <td>{{user.view}}</td>
+                <td align="right"><button type="button" class="btn btn-success" onclick="location.href='{% url 'reviews:updatekrida' user.id %}'">Update</button></td>
+                <td align="right"><button type="button" class="btn btn-danger" onclick="location.href='{% url 'reviews:deletekrida' user.id %}'">Delete</button></td>
+                {% endif %}
 
-    </tr>
-  {% endfor %}
+            </tr>
+          {% endfor %}
   <br>
 
   {% for krida in kridaView %}
