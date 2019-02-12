@@ -29,7 +29,7 @@
         <th>Hasil Ujian</th>
         {% if request.user.is_staff %}
 
-        <th>Pembayaran</th>
+
       <th scope="col">Edit</th>
       <th scope="col">Delete</th>
         {% endif %}
@@ -50,7 +50,6 @@
         <td>{{user.hasilujian}}</td>
               {% if request.user.is_staff %}
 
-      <td>{{user.pembayaran}}</td>
         <td align="right"><button type="button" class="btn btn-success" onclick="location.href='{% url 'reviews:updatekrida' user.id %}'">Update</button></td>
         <td align="right"><button type="button" class="btn btn-danger" onclick="location.href='{% url 'reviews:deletekrida' user.id %}'">Delete</button></td>
         {% endif %}
