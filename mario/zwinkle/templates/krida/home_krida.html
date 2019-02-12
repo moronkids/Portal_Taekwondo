@@ -1,11 +1,11 @@
-{% extends "base_krida.html"  %}
+{% extends "index_krida.html"  %}
 {% load widget_tweaks %}
 
 {% block content %}
-<div class="container-fluid">
+<div class="container-fluid js-scroll-trigger" style="color-background">
 <div class="jumbotron vertical-center" style="background:inherit;">
 
-<h1 style="text-align:center;padding-bottom:50px;">Peserta Ujian Tingkat UTI PRO Jogja</h1>
+<h1 style="text-align:center;padding-bottom:50px;color:#f05f40;font-weight:bolder;">Peserta Ujian Tingkat UTI PRO Jogja</h1>
     <form method="get">
         <div class="form-group col-md-6">
               {{ filter.form.name.label_tag }}

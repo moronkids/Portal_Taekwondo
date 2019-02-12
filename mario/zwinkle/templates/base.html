@@ -11,9 +11,22 @@
     <meta name="author" content="">
 
     <title>Krida</title>
-  <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    <title>Krida Taekwondo | UTI JOGJA</title>
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">-->
+
     <!-- Bootstrap core CSS -->
-    <link href="{% static "css/all.min.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "css_index/bootstrap.min.css" %}" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="{% static "css_index/all.min.css" %}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="{% static "css_index/magnific-popup.css" %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static "css_index/creative.min.css" %}" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 <style>
@@ -25,19 +38,17 @@
 	width:300px;
 	height:500px;
 }
-.login h1 { color: white; text-shadow: 0 0 10px rgba(0,0,0,0.3); font:white; letter-spacing:1px; text-align:center; }
+.login h1 { color: white; font:white; letter-spacing:1px; text-align:center; }
 
 
 input {
 	width: 100%;
 	margin-bottom: 10px;
-	background: rgba(0,0,0,0.3);
 	border: none;
 	outline: none;
 	padding: 10px;
 	font-size: 13px;
 	color: white;
-	text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
 	border: 1px solid rgba(0,0,0,0.3);
 	border-radius: 4px;
 	box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
@@ -49,12 +60,6 @@ input {
 }
 input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }
 
-body {
-
-	font-family: 'Open Sans', sans-serif;
-	background: 	#6B8E23;
-	color: white;
-}
 
 .button {
 
@@ -64,28 +69,31 @@ body {
 
   <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top js-scroll-trigger" id="mainNav" style="">
       <div class="container">
-        <a class="navbar-brand" href="{% url 'rumah' %}">Start Bootstrap</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="{% url 'rumah'%}">SULISTYO ARDANI</a>
+        <button class="navbar-toggler navbar-toggler-right navbar-brand " type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home
+              <a class="nav-link" href="{% url 'reviews:blog'%}">Blog
                 <span class="sr-only">(current)</span>
               </a>
             </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'reviews:krida' %}">Ujian</a>
+              </li>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'reviews:administrasi' %}">Administrasi</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'reviews:hasil' %}">Nilai</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
             </li>
           </ul>
         </div>
