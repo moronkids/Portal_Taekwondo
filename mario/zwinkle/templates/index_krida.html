@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Krida Taekwondo | UTI JOGJA</title>
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">-->
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "css_index/bootstrap.min.css" %}" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="{% static "css_index/all.min.css" %}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="{% static "css_index/magnific-popup.css" %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static "css_index/creative.min.css" %}" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top js-scroll-trigger" id="mainNav" style="">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'rumah'%}">SULISTYO ARDANI</a>
+        <button class="navbar-toggler navbar-toggler-right navbar-brand " type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'reviews:blog'%}">Blog
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'reviews:krida' %}">Ujian</a>
+              </li>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'reviews:administrasi' %}">Administrasi</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'reviews:hasil' %}">Nilai</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+ {% block content %}
+ {% endblock %}
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static "js_index/jquery.min.js" %}"></script>
+    <script src="{% static "js_index/bootstrap.bundle.min.js" %}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="{% static "js_index/jquery.easing.min.js" %}"></script>
+    <script src="{% static "js_index/scrollreveal.min.js" %}"></script>
+    <script src="{% static "js_index/jquery.magnific-popup.min.js" %}"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="{% static "js_index/creative.min.js" %}"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+
+  </body>
+
+</html>
+
+
