@@ -73,6 +73,8 @@ nominal = (
     ('150.000', '150.000'),
     ('300.000', '300.000'),
     ('LUNAS', 'LUNAS'),
+    ('-', '-'),
+
 )
 status = (
     ('OFF', 'OFF'),
@@ -87,17 +89,17 @@ class krida_model(models.Model):
     hasilujian = models.CharField(
         max_length=100,
         choices=hasil_ujian,
-        default=1,
+        default='-',
     )
     pembayaran = models.CharField(
         max_length=100,
         choices=nominal,
-        default=1,
+        default='-',
     )
     view = models.CharField(
         max_length=100,
         choices=status,
-        default=1,
+        default='OFF',
     )
 
     def __str__(self):

@@ -27,12 +27,12 @@
       <!--<th scope="col">Penguji</th>-->
       <th scope="col">Sabuk</th>
         <th>Hasil Ujian</th>
-        {% if request.user.is_staff %}
+        <!--{% if request.user.is_staff %}-->
 
 
-      <th scope="col">Edit</th>
-      <th scope="col">Delete</th>
-        {% endif %}
+      <!--<th scope="col">Edit</th>-->
+      <!--<th scope="col">Delete</th>-->
+        <!--{% endif %}-->
     </tr>
   </thead>
   <tbody>
@@ -48,11 +48,11 @@
 
       <td>{{user.sabuk}}</td>
         <td>{{user.hasilujian}}</td>
-              {% if request.user.is_staff %}
+              <!--{% if request.user.is_staff %}-->
 
-        <td align="right"><button type="button" class="btn btn-success" onclick="location.href='{% url 'reviews:updatekrida' user.id %}'">Update</button></td>
-        <td align="right"><button type="button" class="btn btn-danger" onclick="location.href='{% url 'reviews:deletekrida' user.id %}'">Delete</button></td>
-        {% endif %}
+        <!--<td align="right"><button type="button" class="btn btn-success" onclick="location.href='{% url 'reviews:updatekrida' user.id %}'">Update</button></td>-->
+        <!--<td align="right"><button type="button" class="btn btn-danger" onclick="location.href='{% url 'reviews:deletekrida' user.id %}'">Delete</button></td>-->
+        <!--{% endif %}-->
 
     </tr>
   {% endfor %}
@@ -76,10 +76,10 @@
     <tbody>
       <tr>
         <td><i>*)Peserta wajib hadir tepat waktu</i></td>
-        {% if request.user.is_staff %}
-        <td align="right"><button type="button" class="btn btn-warning" onclick="location.href='{% url 'reviews:deleteall' %}'">Reset Peserta</button></td>
-        <td align="right"><button type="button" class="btn btn-primary" onclick="location.href='{% url 'reviews:createkrida' %}'">Tambah Peserta</button></td>
-        {% endif %}
+        <!--{% if request.user.is_staff %}-->
+        <!--<td align="right"><button type="button" class="btn btn-warning" onclick="location.href='{% url 'reviews:deleteall' %}'">Reset Peserta</button></td>-->
+        <!--<td align="right"><button type="button" class="btn btn-primary" onclick="location.href='{% url 'reviews:createkrida' %}'">Tambah Peserta</button></td>-->
+        <!--{% endif %}-->
       </tr>
     <tr>
       <td><i>**)Peserta wajib melunasi administrasi dan syarat yang berlaku</i></td>

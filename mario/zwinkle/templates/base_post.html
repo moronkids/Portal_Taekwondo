@@ -15,7 +15,7 @@
                     <h2 style="padding-top:50px">{{post.judul}}</h2>
                 <p>Penulis : <b>{{post.penulis}}</b></p>
 
-  <center><img src="{{post.gambar.url}}" width="500" align="center"></center><br>
+                <center><img src="{{post.gambar.url}}" width="500" align="center"></center><br>
                     <p style="text-align:justify">{{post.isi}}</p>
                 <p >Kategori : <b>{{post.kategori}}</b></p>
                         {% if request.user.is_staff %}
