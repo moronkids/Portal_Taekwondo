@@ -9,10 +9,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('create/', views.create, name='create'),
-
+    path('page/', views.page),
     path('createkrida/', views.krida_create, name='createkrida'),
     path('', views.home_post, name="blog"),
     path('krida/', views.krida, name="krida"),
+    path('krida/about/', views.about_krida, name="about_krida"),
+    path('krida/dojang/', views.dojang, name="dojang"),
     path('krida/hasilujian/', views.hasilkrida, name="hasil"),
     path('krida/administrasi/', views.administrasikrida, name="administrasi"),
     re_path(r'^delete/(?P<delete_id>[0-9]+)$', views.delete, name='delete'),

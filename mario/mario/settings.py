@@ -109,8 +109,8 @@ WSGI_APPLICATION = 'mario.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'krida_taekwondo',
-        'USER': 'name',
+        'NAME': 'taekwondo',
+        'USER': 'adiyan',
         'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '',

@@ -8,8 +8,8 @@
 <h1 style="text-align:center;padding-bottom:50px;color:#f05f40;font-weight:bolder;">Administrasi Anggota KRIDA Taekwondo</h1>
     <form method="get">
         <div class="form-group col-md-6">
-              {{ filter.form.pembayaran.label_tag }}
-              {% render_field filter.form.pembayaran class="form-control" %}
+              <!--{{ filter.form.pembayaran.label_tag }}-->
+              <!--{% render_field filter.form.pembayaran class="form-control" %}-->
             </div>
         <div style="padding-left:15px;">
             <button type="submit" class="btn btn-primary">Search</button>
@@ -24,7 +24,7 @@
       <!--<th scope="col">Umur</th>-->
       <!--<th scope="col">Penguji</th>-->
       <th scope="col">Sabuk</th>
-        <th>Pembayaran</th>
+
         {% if request.user.is_authenticated %}
         <th>Hasil Ujian</th>
         <th>Status</th>
@@ -42,8 +42,7 @@
       <td>{{user.name}}</td>
       <!--<td>{{user.umur}}</td>-->
       <!--<td>{{user.penguji}}</td>-->
-      <td>{{user.sabuk}}</td>
-        <td>{{user.pembayaran}}</td>
+      <td>{{user.sabukawal}}</td>
           {% if request.user.is_staff %}
             <!--jika bukan staff ingin menggunakan user biasa gunakan is_authenticated-->
         <td>{{user.hasilujian}}</td>

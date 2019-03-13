@@ -37,6 +37,15 @@ def home_post(request):
     }
     return render(request, 'base_post.html', context)
 
+
+def page(request):
+    pageView = krida_model.objects.all()
+    context = {
+        'page_title':'Krida Taekwondo News',
+        'pageView':pageView,
+    }
+    return render(request, 'tes/page.html', context)
+
 def create(request):
     if request.method == 'POST':
         PostData = PostForm(request.POST, request.FILES or None)
@@ -96,9 +105,19 @@ def hasilkrida(request):
     return render(request, 'krida/nilai.html', {'filter': user_filter})
 
 def administrasikrida(request):
-    user_list = krida_model.objects.all().order_by('pembayaran')
+    user_list = krida_model.objects.all()
     user_filter = kridafilter(request.GET, queryset=user_list)
     return render(request, 'krida/administrasi.html', {'filter': user_filter})
+
+def about_krida(request):
+    return render(request, 'krida/about.html')
+
+
+def dojang(request):
+    user_list = krida_model.objects.filter(view__contains='ON').order_by('dojang')
+    user_filter = kridafilter(request.GET, queryset=user_list)
+    return render(request, 'krida/dojang.html', {'filter': user_filter})
+
 
 @login_required(redirect_field_name='krida')
 def krida_create(request):
@@ -109,7 +128,7 @@ def krida_create(request):
 
 
 
-        return redirect('reviews:krida')
+        return redirect('reviews:dojang')
     context = {
         'page_title': 'Tambah Peserta',
         'kridadata':kridadata,
@@ -133,8 +152,12 @@ def updatekrida(request, update_id_krida):
     data = {
         'name'     : kridaupdate.name,
         'umur'       : kridaupdate.umur,
-        'penguji'  : kridaupdate.penguji,
-        'sabuk'  : kridaupdate.sabuk,
+        'ttl'  : kridaupdate.ttl,
+        'dojang'  : kridaupdate.dojang,
+        'sabukawal'  : kridaupdate.sabukawal,
+        'sabukujian'  : kridaupdate.sabukujian,
+        'hasilujian'  : kridaupdate.hasilujian,
+        'view'  : kridaupdate.view,
 
     }
     kridadata = krida_form(request.POST or None, initial=data, instance=kridaupdate)
@@ -144,7 +167,7 @@ def updatekrida(request, update_id_krida):
             kridadata.save()
 
 
-        return redirect('reviews:krida')
+        return redirect('reviews:dojang')
     context = {
         'page_title':'Update Peserta',
         'kridadata':kridadata,

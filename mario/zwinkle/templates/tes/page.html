@@ -1,0 +1,12 @@
+{% extends "index_krida.html"  %}
+{% load widget_tweaks %}
+
+{% block content %}
+  {% for cuk in pageView %}
+    {% csrf_token %}
+      <h1>{{cuk.umur}}</h1>
+      <h1>{{cuk.nama}}</h1>
+      <h1>{{cuk.umur}}</h1>
+  {% endfor %}
+
+{% endblock %}

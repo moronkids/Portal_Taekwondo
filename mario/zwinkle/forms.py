@@ -53,25 +53,56 @@ class krida_form(ModelForm):
         fields = [
 
             'name',
+            'ttl',
+            'dojang',
             'umur',
-            'penguji',
-            'sabuk',
+            'sabukawal',
+            'sabukujian',
             'hasilujian',
-            'pembayaran',
             'view',
+            'waktu',
+
         ]
         widgets = {
-            'pembayaran': forms.Select(attrs={
-                'class': 'forms-control',
-                'choices': 'nominal',
+            'name': forms.TextInput(attrs={
+                'class':'form-control','id':'name', 'label':'nama'
+            }),
+
+            'waktu': forms.TextInput(attrs={
+                'class': 'form-control', 'id': 'waktu', 'label': 'waktu'
+            }),
+
+            'ttl': forms.TextInput(attrs={
+                'class':'form-control','id':'ttl'
+            }),
+            'dojang': forms.Select(attrs={
+                'class':'form-control','id':'dojang',
+                'choices':'dojang'
+            }),
+            'umur': forms.TextInput(attrs={
+                'class':'form-control','id':'umur'
+            }),
+
+
+            'sabukawal': forms.Select(attrs={
+                'id':'sabukawal',
+                'class': 'form-control',
+                'choices': 'sabukawal',
+            }),
+            'sabukujian': forms.Select(attrs={
+                'id': 'sabukujian',
+                'class': 'form-control',
+                'choices': 'sabukujian',
             }),
             'hasilujian': forms.Select(attrs={
-                'class': 'forms-control',
+                'class': 'form-control',
                 'choices': 'hasil_ujian',
+                'id': 'hasilujian'
             }),
             'view': forms.Select(attrs={
-                'class': 'forms-control',
+                'class': 'form-control',
                 'choices': 'status',
+                'id': 'view'
             }),
 
         }

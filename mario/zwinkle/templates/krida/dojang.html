@@ -5,11 +5,11 @@
 <div class="container-fluid js-scroll-trigger" style="color-background">
 <div class="jumbotron vertical-center" style="background:inherit;">
 
-<h1 style="text-align:center;padding-bottom:50px;color:#f05f40;font-weight:bolder;">Peserta Ujian Tingkat UTI PRO Jogja</h1>
+<h1 style="text-align:center;padding-bottom:50px;color:#f05f40;font-weight:bolder;">Dojang</h1>
     <form method="get">
         <div class="form-group col-md-6">
-              {{ filter.form.name.label_tag }}
-              {% render_field filter.form.name class="form-control" %}
+              {{ filter.form.dojang.label_tag }}
+              {% render_field filter.form.dojang class="form-control" %}
             </div>
         <div style="padding-left:15px;">
             <button type="submit" class="btn btn-primary">Search</button>
@@ -20,7 +20,10 @@
   <thead>
     <tr>
       <th scope="col">No</th>
+      <th scope="col">ID</th>
+      <th scope="col">Dojang</th>
       <th scope="col">Nama</th>
+      <th scope="col">TTL</th>
       <th scope="col">Dari Sabuk</th>
       <th scope="col">Ke Sabuk</th>
       <th scope="col">Waktu Ujian</th>
@@ -36,7 +39,25 @@
     {% csrf_token %}
     <tr>
       <th scope="row">{{forloop.counter}}</th>
+      {% if user.dojang == 'Krida' %}
+        <td><a>KRD/</a>{{user.id}}</td>
+        <td>{{user.dojang}}</td>
+      {% elif user.dojang == 'Bumi Putera'%}
+        <td><a>BP/</a>{{user.id}}</td>
+        <td>{{user.dojang}}</td>
+    {% elif user.dojang == 'Satria Muda'%}
+        <td><a>SM/</a>{{user.id}}</td>
+        <td>{{user.dojang}}</td>
+    {% elif user.dojang == 'Black Eagle'%}
+        <td><a>BE/</a>{{user.id}}</td>
+        <td>{{user.dojang}}</td>
+    {% elif user.dojang == 'Bangun Harjo'%}
+        <td><a>BH/</a>{{user.id}}</td>
+        <td>{{user.dojang}}</td>
+        {% endif %}
+
       <td>{{user.name}}</td>
+      <td>{{user.ttl}}</td>
       <td>{{user.sabukawal}}</td>
       <td>{{user.sabukujian}}</td>
       <td>{{user.waktu}}</td>
