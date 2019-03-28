@@ -35,53 +35,42 @@
   </thead>
   <tbody>
 
-  {% for user in filter.qs %}
+  {% for user in datas %}
     {% csrf_token %}
     <tr>
       <th scope="row">{{forloop.counter}}</th>
-      {% if user.dojang == 'Krida' %}
-        <td><a>KRD/</a>{{user.id}}</td>
-        <td>{{user.dojang}}</td>
-      {% elif user.dojang == 'Bumi Putera'%}
-        <td><a>BP/</a>{{user.id}}</td>
-        <td>{{user.dojang}}</td>
-    {% elif user.dojang == 'Satria Muda'%}
-        <td><a>SM/</a>{{user.id}}</td>
-        <td>{{user.dojang}}</td>
-    {% elif user.dojang == 'Black Eagle'%}
-        <td><a>BE/</a>{{user.id}}</td>
-        <td>{{user.dojang}}</td>
-    {% elif user.dojang == 'Bangun Harjo'%}
-        <td><a>BH/</a>{{user.id}}</td>
-        <td>{{user.dojang}}</td>
+         <td>
+            {{user.sabukawal}}
+        </td>
+        <td>
+            {{user.sabukujian}}
+        </td>
+        <td>
+            {{user.waktu}}
+        </td>
+        {% for userx in user.kridamodels.all %}
+         {% if userx.dojang == 'Krida' %}
+        <td><a>KRD/</a>{{userx.id}}</td>
+        <td>{{userx.dojang}}</td>
+      {% elif userx.dojang == 'Bumi Putera'%}
+        <td><a>BP/</a>{{userx.id}}</td>
+        <td>{{userx.dojang}}</td>
+    {% elif userx.dojang == 'Satria Muda'%}
+        <td><a>SM/</a>{{userx.id}}</td>
+        <td>{{userx.dojang}}</td>
+    {% elif userx.dojang == 'Black Eagle'%}
+        <td><a>BE/</a>{{userx.id}}</td>
+        <td>{{userx.dojang}}</td>
+    {% elif userx.dojang == 'Bangun Harjo'%}
+        <td><a>BH/</a>{{userx.id}}</td>
+        <td>{{userx.dojang}}</td>
         {% endif %}
 
-      <td>{{user.name}}</td>
-      <td>{{user.ttl}}</td>
-      <td>{{user.sabukawal}}</td>
-      <td>{{user.sabukujian}}</td>
-      <td>{{user.waktu}}</td>
-              <!--{% if request.user.is_staff %}-->
-        <!--<td align="right"><button type="button" class="btn btn-success" onclick="location.href='{% url 'reviews:updatekrida' user.id %}'">Update</button></td>-->
-        <!--<td align="right"><button type="button" class="btn btn-danger" onclick="location.href='{% url 'reviews:deletekrida' user.id %}'">Delete</button></td>-->
-        <!--{% endif %}-->
-
+      <td>{{userx.name}}</td>
+        <td>{{userx.ttl}}</td>
+            {% endfor %}
     </tr>
-  {% endfor %}
-  <br>
-
-  {% for krida in kridaView %}
-  {% csrf_token %}
-    <tr>
-        {% if request.user.is_staff %}
-        <td align="right"><button type="button" class="btn btn-success" onclick="location.href='{% url 'reviews:updatekrida' krida.id %}'">Update</button></td>
-        {% endif %}
-    </tr>
-  {% endfor %}
-  </tbody>
-
-
-
+{% endfor %}
 </table>
 
   <table style="width:100%;">

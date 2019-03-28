@@ -1,6 +1,7 @@
 from django import forms
-from .models import PostModel, krida_model
-from django.forms import ModelForm
+from .models import PostModel, Krida_model, Krida_model_detail
+from django.forms import formset_factory, ModelForm
+
 
 
 class PostForm(ModelForm):
@@ -48,28 +49,17 @@ class PostForm(ModelForm):
 
 class krida_form(ModelForm):
     class Meta:
-
-        model = krida_model
+        model = Krida_model
         fields = [
-
             'name',
             'ttl',
             'dojang',
             'umur',
-            'sabukawal',
-            'sabukujian',
-            'hasilujian',
             'view',
-            'waktu',
-
         ]
         widgets = {
             'name': forms.TextInput(attrs={
                 'class':'form-control','id':'name', 'label':'nama'
-            }),
-
-            'waktu': forms.TextInput(attrs={
-                'class': 'form-control', 'id': 'waktu', 'label': 'waktu'
             }),
 
             'ttl': forms.TextInput(attrs={
@@ -83,26 +73,33 @@ class krida_form(ModelForm):
                 'class':'form-control','id':'umur'
             }),
 
+        }
 
+class krida_formset(ModelForm):
+    class Meta:
+        model = Krida_model_detail
+        fields = [
+            'sabukawal',
+            'sabukujian',
+            'hasilujian',
+            'waktu',
+        ]
+        widgets = {
             'sabukawal': forms.Select(attrs={
                 'id':'sabukawal',
-                'class': 'form-control',
+                'class': 'formset-field',
                 'choices': 'sabukawal',
             }),
             'sabukujian': forms.Select(attrs={
                 'id': 'sabukujian',
-                'class': 'form-control',
+                'class': 'formset-field',
                 'choices': 'sabukujian',
             }),
             'hasilujian': forms.Select(attrs={
-                'class': 'form-control',
+                'class': 'formset-field',
                 'choices': 'hasil_ujian',
                 'id': 'hasilujian'
             }),
-            'view': forms.Select(attrs={
-                'class': 'form-control',
-                'choices': 'status',
-                'id': 'view'
-            }),
-
         }
+
+kridaformset = formset_factory(krida_formset, extra=15)

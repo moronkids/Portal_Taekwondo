@@ -35,14 +35,15 @@
   </thead>
   <tbody>
 
-  {% for user in filter.qs %}
-    {% csrf_token %}
+  {% for user in admin %}
     <tr>
       <th scope="row">{{forloop.counter}}</th>
       <td>{{user.name}}</td>
       <!--<td>{{user.umur}}</td>-->
       <!--<td>{{user.penguji}}</td>-->
-      <td>{{user.sabukawal}}</td>
+        {% for detail in user.krida_model_details.all %}
+            <td>{{detail.waktu}}</td>
+        {% endfor %}
           {% if request.user.is_staff %}
             <!--jika bukan staff ingin menggunakan user biasa gunakan is_authenticated-->
         <td>{{user.hasilujian}}</td>

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import buat_login, Publication, Article, PostModel, foto
+from .models import buat_login, Publication, Article, PostModel, foto, Krida_model, Krida_model_detail
 
 
 
@@ -10,6 +10,8 @@ admin.site.register(Publication)
 admin.site.register(Article)
 admin.site.register(PostModel)
 admin.site.register(foto)
+admin.site.register(Krida_model)
+admin.site.register(Krida_model_detail)
 
 
 from django.db import models

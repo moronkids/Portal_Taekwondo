@@ -1,55 +1,22 @@
 {% extends 'post/base.html' %}
+{% load staticfiles %}
+
 {% block content %}
-    <!-- Page Content -->
-    <div class="container">
-      <div class="jumbotron vertical-center" style="background:inherit">
-        <h1 style="text-align:center;padding-bottom:50px;color:#f05f40;font-weight:bolder;">{{page_title}}</h1>
-          <form method="POST">
-          {% csrf_token %}
-          <div class="form-group" style="margin-bottom:10px">
-              <!--<label>Nama</label>-->
-              <!--<input id="name">-->
-              <!--<a id="ttl">TTL-->
-              <!--{{kridadata.ttl}}</a><br>-->
-              <!--<a id="dojang">Dojang-->
-              <!--{{kridadata.dojang}}</a><br>-->
-              <!--<a id="penguji">Penguji-->
-              <!--{{kridadata.penguji}}</a><br>-->
+	<form method="POST">
 
-              <!--<table>-->
-                <!--<tr>-->
-                  <!--<th scope="col">Dari Sabuk</th>-->
-                  <!--<th scope="col" id="sabukawal">{{kridadata.sabukawal}}</th>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                  <!--<th scope="col">Ke Sabuk</th>-->
-                  <!--<th scope="col" id="sabukujian">{{kridadata.sabukujian}}</th>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                  <!--<th scope="col">View Control - Hasil Ujian </th>-->
-                  <!--<th scope="col" id="hasilujian">{{kridadata.hasilujian}}</th>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                  <!--<th scope="col">View Control - Pembayaran </th>-->
-                  <!--<th scope="col" id="pembayaran">{{kridadata.pembayaran}}</th>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                  <!--<th scope="col">View Control - Ujian </th>-->
-                  <!--<th scope="col" id="view">{{kridadata.view}}</th>-->
-                <!--</tr>-->
+		<!--{{form.as_table}}-->
+        <!--&lt;!&ndash;{{formset.management_form}}&ndash;&gt;-->
+        <div class="container mt-5" style="padding-top:100px;">
+            {% csrf_token %}
+            {{forms.as_p}}
+            {{formset.management_form}}
+            {{formset.as_table}}
+        </div>
 
 
-              <!--</table>-->
-
-
-              {{kridadata.label}}
-              {{kridadata}}
-              <button type="submit" class="btn btn-primary">Kirim</button>
-          </div>
-    </form>
-      </div>
-    </div>
-
+		<input type="submit" value="Update Profile" class="button"/>
+	</form>
 {% endblock %}
-
-
+{% block extra_script %}
+	<script type="text/javascript" src="{% static 'js/formset.js' %}"></script>
+{% endblock%}
