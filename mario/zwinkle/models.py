@@ -95,8 +95,38 @@ dojang = (
     ('Black Eagle', 'Black Eagle'),
     ('Bangunharjo', 'Bangunharjo'),
 )
-class krida_model(models.Model):
-    krida_model = models.ForeignKey('krida_model_detail', on_delete=models.CASCADE, blank=True)
+
+
+class Krida_model_detail(models.Model):
+    sabukawal = models.CharField(
+        verbose_name='Dari Sabuk',
+        max_length=100,
+        choices=tingkatan_sabuk,
+        default=None,
+    )
+    sabukujian = models.CharField(
+        verbose_name='Ke Sabuk',
+        max_length=100,
+        choices=tingkatan_sabuk,
+        default=None,
+    )
+
+    hasilujian = models.CharField(
+        max_length=100,
+        choices=hasil_ujian,
+        default=None,
+    )
+    waktu = models.CharField(max_length=30, default="x")
+
+
+    def __str__(self):
+        return self.sabukawal
+
+    class Meta:
+        db_table = "krida_models_details"
+
+class Krida_model(models.Model):
+    krida_models = models.ForeignKey(Krida_model_detail, related_name='kridamodels', blank=True, null=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=30, verbose_name='Nama')
     ttl = models.CharField(max_length=30)
     dojang = models.CharField(
@@ -105,26 +135,6 @@ class krida_model(models.Model):
         default='-',
     )
     umur = models.IntegerField()
-    waktu = models.CharField(max_length=30)
-    sabukawal = models.CharField(
-        verbose_name='Dari Sabuk',
-        max_length=100,
-        choices=tingkatan_sabuk,
-        default='Putih',
-    )
-    sabukujian = models.CharField(
-        verbose_name='Ke Sabuk',
-        max_length=100,
-        choices=tingkatan_sabuk,
-        default='Putih',
-    )
-
-    hasilujian = models.CharField(
-        max_length=100,
-        choices=hasil_ujian,
-        default='-',
-    )
-
     view = models.CharField(
         max_length=100,
         choices=status,
@@ -132,17 +142,7 @@ class krida_model(models.Model):
     )
 
     def __str__(self):
-        return "{}.{}".format(self.id,self.umur)
+        return self.name
 
-class krida_model_detail(models.Model):
-    name = models.CharField(max_length=30, verbose_name='Nama')
-    ttl = models.CharField(max_length=30)
-    dojang = models.CharField(
-        max_length=30,
-        choices=dojang,
-        default='-',
-    )
-    umur = models.IntegerField()
-
-    def __str__(self):
-        return "{}.{}".format(self.id,self.umur)
+    class Meta:
+        db_table = "krida_models"
