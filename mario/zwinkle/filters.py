@@ -1,4 +1,4 @@
-from .models import Krida_model
+from .models import Collection
 import django_filters
 
 
@@ -7,7 +7,7 @@ class kridafilter(django_filters.FilterSet):
     dojang = django_filters.CharFilter(lookup_expr='icontains')
 
     class Meta:
-        model = Krida_model
+        model = Collection
         fields = [
             'name',
             # 'hasilujian',

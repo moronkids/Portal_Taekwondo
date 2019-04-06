@@ -1,0 +1,82 @@
+{% extends "index_krida.html" %}
+{% block content %}
+<style>
+  .jumbotron {
+    background-color:transparent !important;
+}
+</style>
+    <div class="container-fluid js-scroll-trigger" style="color-background;">
+      <div class="jumbotron vertical-center" style="color-background:none;">
+<div class="card">
+        <div class="card-header">
+            <h1 style="text-align:center;color:#f05f40;font-weight:bolder;"><b>Peserta Ujian</b></h1>
+        </div>
+
+
+<!--<table class="table" style="width:100%">-->
+  <!--<tr>-->
+  <!--<th colspan="2">-->
+    <!--<h1>x</h1>-->
+  <!--</th>-->
+  <!--<th colspan="2">-->
+      <!--<td>Dari Sabuk</td>-->
+      <!--<td>Ke Sabuk</td>-->
+      <!--<td>Waktu</td>-->
+  <!--</th>-->
+  <!--</tr>-->
+  <!--<tr>-->
+      <!--<td>No</td>-->
+      <!--<td>ID</td>-->
+      <!--<td>Dojang</td>-->
+      <!--<td>Nama</td>-->
+    <!--<tr></tr>-->
+      <!--{% for x in collections %}-->
+      <!--<td>{{forloop.counter}}</td>-->
+      <!--<td>{{x.id}}</td>-->
+      <!--<td>{{x.dojang}}</td>-->
+      <!--<td>{{x.nama}}</td>-->
+    <!--<tr></tr>-->
+      <!--{% endfor %}-->
+  <!--</tr>-->
+
+<!--</table>-->
+<table class="table">
+  <tr>
+    <th class="tg-s268" colspan="7"></th>
+  </tr>
+  <tr>
+    <td class="tg-s268">No</td>
+    <td class="tg-s268">ID</td>
+    <td class="tg-s268">Dojang</td>
+    <td class="tg-s268">Nama</td>
+    <td class="tg-s268">Dari Sabuk</td>
+    <td class="tg-s268">Ke Sabuk</td>
+    <td class="tg-s268">Waktu</td>
+  </tr>
+    <tr>
+    {% for x in collections %}
+    <td class="tg-s268">{{forloop.counter}}</td>
+    <td class="tg-s268">{{x.id}}</td>
+    <td class="tg-s268">{{x.dojang}}</td>
+    <td class="tg-s268">{{x.nama}}</td>
+    {% for z in x.has_titles.all %}
+        {% if forloop.last %}
+    <td class="tg-s268">{{z.sabukawal}}</td>
+    <td class="tg-s268">{{z.sabukujian}}</td>
+    <td class="tg-s268">{{z.waktu}}</td>
+<tr></tr>
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+
+</th>
+  </th>
+    </tr>
+</table>
+
+        </div>
+</div>
+      </div>
+    </div>
+{% endblock content %}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus cupiditate dignissimos distinctio, dolor doloremque ea eligendi est eveniet illo impedit ipsam laudantium nemo optio, rem repellendus sed ut vitae.

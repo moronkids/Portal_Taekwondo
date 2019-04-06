@@ -24,13 +24,15 @@ SECRET_KEY = '4@kiq+=&7ob)j5i)otztgadssaj4do)#rui$jsvwc@b95$c^1a'
 # DEBUG = True
 DEBUG = True
 
-ALLOWED_HOSTS = ['skripsi-deploy.herokuapp.com', 'localhost', '0.0.0.0', '127.0.0.1']
+# ALLOWED_HOSTS = ['skripsi-deploy.herokuapp.com', 'localhost', '0.0.0.0', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'zwinkle',
+    'crispy_forms',
+    'zwinkle.apps.ZwinkleConfig',
     'django.contrib.admin',
     'django.contrib.sites',
     'django.contrib.auth',
@@ -46,9 +48,10 @@ INSTALLED_APPS = [
     'django_filters',
     'dj_database_url',
 
+
     ]
 SITE_ID = 1
-
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
@@ -168,8 +171,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-MEDIA_URL = 'media/'
-MEDIA_ROOT = '/Users/spacetroopers/Documents/DJANGO/Basic-Django-2.1/mario/media'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/Users/spacetroopers/Documents/Portal_Taekwondo/mario/media/'
+
 
 
 SESSION_COOKIE_AGE = 3*60 # set just 10 seconds to test

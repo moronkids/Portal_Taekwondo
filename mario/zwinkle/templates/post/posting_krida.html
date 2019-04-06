@@ -9,7 +9,6 @@
         <div class="container mt-5" style="padding-top:100px;">
             {% csrf_token %}
             {{forms.as_p}}
-            {{formset.management_form}}
             {{formset.as_table}}
         </div>
 

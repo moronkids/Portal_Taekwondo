@@ -25,7 +25,10 @@
 
     <!-- Custom styles for this template -->
     <link href="{% static "css_index/creative.min.css" %}" rel="stylesheet">
-
+<style>
+  .asteriskField{
+  display:none;}
+</style>
   </head>
 
   <body id="page-top">
@@ -33,40 +36,38 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top js-scroll-trigger" id="mainNav" style="">
       <div class="container">
-        <a class="navbar-brand" href="{% url 'rumah'%}">UTI PRO JOGJA</a>
+        <a class="navbar-brand" href="{% url 'rumah' %}">UTI PRO JOGJA</a>
         <button class="navbar-toggler navbar-toggler-right navbar-brand " type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="{% url 'reviews:blog'%}">Blog
+              <a class="nav-link" href="{% url 'reviews:blog' %}">Blog</a>
                 <span class="sr-only">(current)</span>
               </a>
             </li>
             {% if request.user.is_active %}
-            <!--<li class="nav-item">-->
-              <!--<a class="nav-link" href="{% url 'reviews:krida' %}">Ujian</a>-->
-            <!--</li>-->
+
 
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'reviews:dojang' %}">Ujian</a>
+              <a class="nav-link" href="{% url 'reviews:homepage' %}">Daftar Peserta</a>
             </li>
             {% endif %}
 
             {% if request.user.is_staff %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'reviews:administrasi' %}">Administrasi</a>
+              <a class="nav-link" href="{% url 'reviews:ujian' %}">Ujian</a>
             </li>
             {% endif %}
 
             {% if request.user.is_active %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'reviews:hasil' %}">Nilai</a>
+              <a class="nav-link" href="#">Nilai</a>
             </li>
             {% endif %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'reviews:about_krida' %}">About</a>
+              <a class="nav-link" href="#">About</a>
             </li>
 
           </ul>

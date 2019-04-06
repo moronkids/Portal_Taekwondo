@@ -1,0 +1,115 @@
+{% extends "index_krida.html" %}
+{% block content %}
+<style>
+  .jumbotron {
+    background-color:transparent !important;
+}
+</style>
+    <div class="container-fluid js-scroll-trigger" style="color-background;">
+      <div class="jumbotron vertical-center" style="color-background:none;">
+<div class="card">
+        <div class="card-header">
+            <h1><b>{{ object }}</b></h1>
+        </div>
+        <div class="card-body">
+        <table class="table">
+        <!--for inline added titles-->
+
+        <!--end-->
+            {% if object.gambar %}
+    	<tr>
+            <th>Foto</th>
+            <td>
+            <center><img src="{{object.gambar.url}}" height="170" align="center"></center><br>
+            </td>
+        </tr>
+    	{% endif %}
+    	{% if object.nama %}
+    	<tr>
+            <th>Nama</th>
+            <td>{{ object.nama }}</td>
+        </tr>
+    	{% endif %}
+    	{% if object.ttl %}
+    	<tr>
+            <th>TTL</th>
+            <td>{{ object.ttl }}</td>
+        </tr>
+    	{% endif %}
+    	{% if object.dojang %}
+    	<tr>
+            <th>Dojang</th>
+            <td>{{ object.dojang }}</td>
+        </tr>
+    	{% endif %}
+        {% if object.umur %}
+    	<tr>
+            <th>Umur</th>
+            <td>{{ object.umur }}</td>
+        </tr>
+    	{% endif %}
+        {% if object.hasilujian %}
+    	<tr>
+            <th>Hasil Ujian</th>
+            <td>{{ object.hasilujian }}</td>
+        </tr>
+        {% endif %}
+
+        </table>
+            <br>
+            <div class="card-header">
+                <h3 style="text-align:center;"><b>HISTORY</b></h3>
+            </div>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Ujian Ke</th>
+                <th scope="col">Sabuk Awal</th>
+                <th scope="col">Sabuk Ujian</th>
+                <th scope="col">Waktu</th>
+                <th scope="col">Hasil Ujian</th>
+            </tr>
+            </thead>
+            <thead>
+            {% if object.has_titles %}
+            {% for title in object.has_titles.all %}
+                <td scope="row">{{forloop.counter}}</td>
+                <td scope="col">{{title.sabukawal}}</td>
+                <td scope="col">{{title.sabukujian}}</td>
+                <td scope="col">{{title.waktu}}</td>
+                <td scope="col">{{title.hasilujian}}</td>
+                <tr></tr>
+            {% endfor %}
+            {% endif %}
+
+            </thead>
+            <!--{% if object.has_titles %}-->
+        <!--{% for title in object.has_titles.all %}-->
+        <!--<tr>-->
+            <!--<th>Sabuk Awal</th>-->
+            <!--<td>{{title.sabukawal}}</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<th>Sabuk Ujian</th>-->
+            <!--<td>{{title.sabukujian}}</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<th>Waktu Ujian</th>-->
+            <!--<td>{{title.waktu}}</td>-->
+        <!--</tr>-->
+
+        <!--<tr>-->
+            <!--<th>Hasil Ujian</th>-->
+            <!--<td>{{title.hasilujian}}</td>-->
+        <!--</tr>-->
+        <!--{% endfor %}-->
+        <!--{% endif %}-->
+        </table>
+        <a class="btn btn-outline-info" href="{% url 'reviews:collection_update' pk=object.id %}">Update</a>
+        <a class="btn btn-outline-danger" href="{% url 'reviews:collection_delete' pk=object.id %}">Delete</a>
+        </div>
+</div>
+      </div>
+    </div>
+{% endblock content %}

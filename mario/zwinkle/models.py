@@ -67,12 +67,15 @@ class PostModel(models.Model):
         return "{}.{}".format(self.id,self.judul)
 
 hasil_ujian = (
-    ('LULUS', 'LULUS'),
-    ('TIDAK LULUS', 'TIDAK LULUS'),
-    ('-', '-'),
+    ('LULUS', 'Lulus'),
+    ('TIDAK LULUS', 'Tidak Lulus'),
+    ('AKAN UJIAN', 'Akan Ujian'),
 )
 status = (
     ('OFF', 'OFF'),
+    ('ON', 'ON'),
+)
+filter = (
     ('ON', 'ON'),
 )
 
@@ -96,8 +99,33 @@ dojang = (
     ('Bangunharjo', 'Bangunharjo'),
 )
 
+class Collection(models.Model):
+    gambar = models.FileField(upload_to='images', null=True)
+    nama = models.CharField(max_length=300, blank=True)
+    ttl = models.CharField(max_length=300, blank=True)
+    dojang = models.CharField(
+        max_length=300,
+        choices=dojang,
+        default='-',
+    )
+    umur = models.IntegerField()
+    note = models.TextField(blank=True)
 
-class Krida_model_detail(models.Model):
+    def __str__(self):
+        return str(self.nama)
+
+    @property
+    def last_log(self):
+        return self.has_titles.first()
+
+
+class CollectionTitle(models.Model):
+    """
+    A Class for Collection titles.
+
+    """
+    collection = models.ForeignKey(Collection,
+        related_name="has_titles", on_delete=models.CASCADE)
     sabukawal = models.CharField(
         verbose_name='Dari Sabuk',
         max_length=100,
@@ -114,35 +142,10 @@ class Krida_model_detail(models.Model):
     hasilujian = models.CharField(
         max_length=100,
         choices=hasil_ujian,
-        default=None,
+        null=True
     )
-    waktu = models.CharField(max_length=30, default="x")
+    waktu = models.CharField(max_length=30)
 
-
-    def __str__(self):
-        return self.sabukawal
 
     class Meta:
-        db_table = "krida_models_details"
-
-class Krida_model(models.Model):
-    krida_models = models.ForeignKey(Krida_model_detail, related_name='kridamodels', blank=True, null=True, on_delete=models.CASCADE)
-    name = models.CharField(max_length=30, verbose_name='Nama')
-    ttl = models.CharField(max_length=30)
-    dojang = models.CharField(
-        max_length=30,
-        choices=dojang,
-        default='-',
-    )
-    umur = models.IntegerField()
-    view = models.CharField(
-        max_length=100,
-        choices=status,
-        default='OFF',
-    )
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        db_table = "krida_models"
+        get_latest_by = "hasilujian"

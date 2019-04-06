@@ -1,24 +1,31 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
-from . models import konten, PostModel, Krida_model, foto, Krida_model_detail
-from zwinkle.forms import PostForm, krida_form, kridaformset, krida_formset
+from django.views.generic import ListView, CreateView
+from . models import konten, PostModel, Collection, foto, CollectionTitle
+from zwinkle.forms import PostForm, CollectionForm, CollectionTitleFormSet
 from allauth.account.forms import LoginForm
 from django.contrib.auth.decorators import login_required
 from .filters import kridafilter
 from django import template
 from django.shortcuts import render,redirect
-from django.forms import modelformset_factory
+from django.forms import modelformset_factory, inlineformset_factory
 from django.db import transaction, IntegrityError
-
+from django.views.generic import TemplateView
+from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from django.core.paginator import Paginator
 register = template.Library()
 
 #---------- view foto -----
 
 def fotoview(request):
     tampil = foto.objects.all()
+
     context = {
-        'tampil':tampil
+        'tampil':Paginator
     }
     return render(request, 'base_post.html', context)
 
@@ -31,15 +38,32 @@ def tes(request):
 
 @register.filter(name='superuser')
 def home_post(request):
-    PostTemp = PostModel.objects.all()
-    tampil = foto.objects.all()
-    print(PostTemp)
+    user_list = PostModel.objects.all()
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(user_list, 4)
+    try:
+        users = paginator.page(page)
+    except PageNotAnInteger:
+        users = paginator.page(1)
+    except EmptyPage:
+        users = paginator.page(paginator.num_pages)
     context = {
-        'page_title':'Krida Taekwondo News',
-        'PostView':PostTemp,
-        'tampil': tampil
+       'page_title':'Krida Taekwondo News',
+        'users':users
     }
     return render(request, 'base_post.html', context)
+# def home_post(request):
+#     PostTemp = PostModel.objects.all()
+#     tampil = foto.objects.all()
+#     Paginator = Paginator(tampil, 10)
+#     print(PostTemp)
+#     context = {
+#         'page_title':'Krida Taekwondo News',
+#         'PostView':PostTemp,
+#         'tampil': Paginator
+#     }
+#     return render(request, 'base_post.html', context)
 
 
 def page(request):
@@ -96,157 +120,108 @@ def update(request, update_id):
 
 # -------------------------------------------------------------------------------
 
-def krida(request):
-    user_list = Krida_model.objects.filter(view__contains='ON').order_by('name')
-    user_filter = kridafilter(request.GET, queryset=user_list)
-    return render(request, 'krida/home_krida.html', {'filter': user_filter})
-
-def hasilkrida(request):
-    user_list = Krida_model.objects.filter(hasilujian__contains='LULUS').order_by('hasilujian')
-    user_filter = kridafilter(request.GET, queryset=user_list)
-    return render(request, 'krida/nilai.html', {'filter': user_filter})
-
-def administrasikrida(request):
-    context = {}
-    user_list = Krida_model.objects.all()
-    user_list_detail = Krida_model_detail.objects.all()
-    context['admin']=user_list
-    context['admin2']=user_list_detail
-    return render(request, 'krida/administrasi.html', context )
-
 def about_krida(request):
     return render(request, 'krida/about.html')
 
 
-# def dojang(request):
-#     objs = Krida_model.objects.all()
-#     objs1 = Krida_model_detail.objects.all()
-#     detail = krida
-#     c = {
-#         "brand_reports": objs,
-#         "brand_reports1": objs1,
-#     }
-#     return render(request, "krida/dojang.html", c)
+# ----------- baru krida ---------------
 
-def dojang(request):
-	datas = Krida_model_detail.objects.all()
-	return render(request, 'krida/dojang.html', {'datas':datas})
-# @login_required(redirect_field_name='krida')
-# def krida_create(request):
-#     context = {}
-#     MarksFormset = modelformset_factory(Krida_model_detail, extra=1, form=krida_formset)
-#     form = krida_form(request.POST or None)
-#     formset = MarksFormset(request.POST or None, request.FILES or None, queryset=Krida_model_detail.objects.none(), prefix='taekwondo')
-#     if request.method == "POST":
-#         if form.is_valid() and formset.is_valid():
-#             student = form.save(commit=False)
-#             student.save()
-#
-#             for mark in formset:
-#                 data = mark.save(commit=False)
-#                 data.student = student
-#                 data.save()
-#
-#             return redirect('reviews:blog')
-#
-#     context['form'] = krida_form()
-#     context['formset'] = MarksFormset()
-#
-#     return render(request, 'post/posting_krida.html', context)
+class HomepageView(TemplateView):
+    template_name = "mycollections/base.html"
 
-def krida_create(request):
-    context = {}
-    detailformset = modelformset_factory(Krida_model_detail, form=krida_formset)
-    form = krida_form(request.POST or None, prefix='form')
-    formset = detailformset(request.POST or None, queryset = Krida_model_detail.objects.none(), prefix='formset')
-    if request.method == "POST":
-        if form.is_valid() and formset.is_valid():
-            data = form.save(commit=False)
-            data.save()
-            obj_id = data.id
-            for datas in formset:
-                datasx = datas.save(commit=False)
-                datasx.kridamodels.all = obj_id
-                datasx.save()
-    context['forms'] = form
-    context['formset'] = formset
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['collections'] = Collection.objects.order_by('id')
+        return context
 
-    return render(request, 'post/posting_krida.html', context)
+class Ujian(TemplateView):
+    template_name = "mycollections/collection_ujian.html"
 
-# def krida_create(request):
-#         context = {}
-# 	    MarksFormset = modelformset_factory(Krida_model_detail, form=krida_formset)
-# 	    form = krida_form(request.POST or None)
-# 	    formset = MarksFormset(request.POST or None, queryset= Marks.objects.none(), prefix='marks')
-# 	if request.method == "POST":
-# 		if form.is_valid() and formset.is_valid():
-# 			try:
-# 				with transaction.atomic():
-# 					student = form.save(commit=False)
-# 					student.save()
-#
-# 					for mark in formset:
-# 						data = mark.save(commit=False)
-# 						data.student = student
-# 						data.save()
-#
-#
-#
-#         context['formset'] = formset
-#         context['form'] = form
-#         return render(request, 'post/posting_krida.html', context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['collections'] = Collection.objects.filter(has_titles__hasilujian__contains="-", ).order_by('-id')
+        context['x']=CollectionTitle.objects.all().order_by('-hasilujian')
+        return context
 
-@login_required(redirect_field_name='deletekrida')
-def deletekrida(request, delete_id_krida):
-    Krida_model.objects.filter(id=delete_id_krida).delete()
-    return redirect('/blog/krida/')
 
-@login_required(redirect_field_name='deleteall')
-def deleteall(request):
-    Krida_model.objects.all().delete()
-    #Krida_model_detail.objects.all().delete()
-    return redirect('/blog/krida/')
+##########################################################################
+#                           Collection views                             #
+##########################################################################
 
-@login_required(redirect_field_name='updatekrida')
-def updatekrida(request, update_id_krida):
-    context = {}
-    detailformset = modelformset_factory(Krida_model_detail, form=krida_formset)
-    form = krida_form(request.POST or None)
-    formset = detailformset(request.POST or None, queryset=Krida_model_detail.objects.none(),
-                            prefix='krida_model_detail')
-    if request.method == "POST":
-        if form.is_valid() and formset.is_valid():
-            with transaction.atomic():
-                krida = form.save(commit=False)
-                krida.save()
+class CollectionDetailView(DetailView):
+    model = Collection
+    template_name = 'mycollections/collection_detail.html'
 
-                for data in formset:
-                    detail = data.save(commit=False)
-                    detail.save()
-    context['forms'] = form
-    context['formset'] = formset
+    def get_context_data(self, **kwargs):
+        context = super(CollectionDetailView, self).get_context_data(**kwargs)
+        return context
 
-    return render(request, 'post/posting_krida.html', context)
-    # kridaupdate = Krida_model.objects.get(id=update_id_krida)
-    #
-    # data = {
-    #     'name'     : kridaupdate.name,
-    #     'umur'       : kridaupdate.umur,
-    #     'ttl'  : kridaupdate.ttl,
-    #     'dojang'  : kridaupdate.dojang,
-    #     'view'  : kridaupdate.view,
-    #
-    # }
-    # kridadata = krida_form(request.POST or None, initial=data, instance=kridaupdate)
-    #
-    # if request.method == 'POST':
-    #     if kridadata.is_valid():
-    #         kridadata.save()
-    #
-    #
-    #     return redirect('reviews:dojang')
-    # context = {
-    #     'page_title':'Update Peserta',
-    #     'kridadata':kridadata,
-    # }
-    # return render(request, 'post/posting_krida.html', context)
+class CollectionCreate(CreateView):
+    model = Collection
+    template_name = 'mycollections/collection_create.html'
+    form_class = CollectionForm
+    success_url = None
+
+    def get_context_data(self, **kwargs):
+        data = super(CollectionCreate, self).get_context_data(**kwargs)
+        if self.request.POST:
+            data['titles'] = CollectionTitleFormSet(self.request.POST, self.request.FILES or None)
+        else:
+            data['titles'] = CollectionTitleFormSet()
+        return data
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        titles = context['titles']
+        with transaction.atomic():
+            self.object = form.save()
+            if titles.is_valid():
+                titles.instance = self.object
+                titles.save()
+        return super(CollectionCreate, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('reviews:collection_detail', kwargs={'pk': self.object.pk})
+
+
+    # @method_decorator(login_required)
+    # def dispatch(self, *args, **kwargs):
+    #     return super(CollectionCreate, self).dispatch(*args, **kwargs)
+
+
+class CollectionUpdate(UpdateView):
+    model = Collection
+    form_class = CollectionForm
+    template_name = 'mycollections/collection_create.html'
+
+    def get_context_data(self, **kwargs):
+        data = super(CollectionUpdate, self).get_context_data(**kwargs)
+        if self.request.POST:
+            data['titles'] = CollectionTitleFormSet(self.request.POST, instance=self.object)
+        else:
+            data['titles'] = CollectionTitleFormSet(instance=self.object)
+        return data
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        titles = context['titles']
+        with transaction.atomic():
+            form.instance.created_by = self.request.user
+            self.object = form.save()
+            if titles.is_valid():
+                titles.instance = self.object
+                titles.save()
+        return super(CollectionUpdate, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('reviews:collection_detail', kwargs={'pk': self.object.pk})
+
+    # @method_decorator(login_required)
+    # def dispatch(self, *args, **kwargs):
+    #     return super(CollectionUpdate, self).dispatch(*args, **kwargs)
+
+
+class CollectionDelete(DeleteView):
+    model = Collection
+    template_name = 'mycollections/confirm_delete.html'
+    success_url = reverse_lazy('reviews:homepage')
