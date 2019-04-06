@@ -4,70 +4,11 @@
     <bookmark url="file://$PROJECT_DIR$/mario/zwinkle/views.py" line="55" mnemonic="4" />
   </component>
   <component name="ChangeListManager">
-    <list id="34c0adf8-619c-4268-90bd-dbdfcfcb9a62" name="update formset" comment="xxx" />
     <list default="true" id="1bce1141-6025-476a-a33a-07221b14fb12" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/mario/zwinkle/custom_layout_object.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mario/zwinkle/templates/krida/krida_master_list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mario/zwinkle/templates/mycollections/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mario/zwinkle/templates/mycollections/collection_create.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mario/zwinkle/templates/mycollections/collection_detail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mario/zwinkle/templates/mycollections/confirm_delete.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mario/zwinkle/templates/mycollections/formset.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/mario/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mario/mario/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/1_Kd74IjT.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/1_QeDiXdc.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/1_Y8ZKGrw.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/20180810_135105.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/32173455023_cd7f6b9c08_o.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/32173455023_cd7f6b9c08_o_H1kqUyo.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/32173455023_cd7f6b9c08_o_JraEAOl.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/32929890486_c1faa161d4_o.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/32929890486_c1faa161d4_o_O7zOJga.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/32929890486_c1faa161d4_o_vEI9Bui.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/32929890486_c1faa161d4_o_zHIoKOQ.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/32947213776_860e8ec0a4_o.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/33703540875_2ee7c2dd61_k.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/33703540875_2ee7c2dd61_k_OzXrHbl.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/33703540875_2ee7c2dd61_k_Yf8Zs8w.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/33703540875_2ee7c2dd61_k_YiVmzPd.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/33703540875_2ee7c2dd61_k_jqLzKgy.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/34685775051_109b99fc3d_o.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/92040.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/CALIFORNIA.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/CALIFORNIA_D51qzyW.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/CALIFORNIA_aYLpSR8.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/IMG_20190213_142936.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/IMG_20190213_142936_uClvsEn.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/Screenshot_2019-01-06_01.13.34.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/Screenshot_2019-01-06_01.35.44.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/Screenshot_2019-01-06_01.41.10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/cetak-kartu-nama-30.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/taekwondo.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/the-north-face-1-logo-png-transparent.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/the-north-face-1-logo-png-transparent_8TonEzs.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/vespa.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/media/images/vespa_z1Zs5Du.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/zwinkle/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/mario/zwinkle/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/zwinkle/filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/mario/zwinkle/filters.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/zwinkle/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/mario/zwinkle/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/zwinkle/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/mario/zwinkle/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/zwinkle/static/css_index/all.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/mario/zwinkle/static/css_index/all.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/zwinkle/static/css_index/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/mario/zwinkle/static/css_index/bootstrap.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/zwinkle/static/img/header.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/mario/zwinkle/static/img/header-sd.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/zwinkle/static/img/thumbnails/header.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/mario/zwinkle/static/img/thumbnails/headerz.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/zwinkle/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/mario/zwinkle/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/zwinkle/templates/base_post.html" beforeDir="false" afterPath="$PROJECT_DIR$/mario/zwinkle/templates/base_post.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/zwinkle/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/mario/zwinkle/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/zwinkle/templates/index_krida.html" beforeDir="false" afterPath="$PROJECT_DIR$/mario/zwinkle/templates/index_krida.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/zwinkle/templates/krida/dojang.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/zwinkle/templates/post/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/mario/zwinkle/templates/post/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/zwinkle/templates/post/posting_krida.html" beforeDir="false" afterPath="$PROJECT_DIR$/mario/zwinkle/templates/post/posting_krida.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/zwinkle/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mario/zwinkle/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/zwinkle/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mario/zwinkle/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mario/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/mario/requirements.txt" afterDir="false" />
     </list>
+    <list id="34c0adf8-619c-4268-90bd-dbdfcfcb9a62" name="update formset" comment="xxx" />
     <ignored path="$PROJECT_DIR$/KridaWEB/" />
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -79,15 +20,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mario/zwinkle/templates/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="90" column="40" selection-start-line="90" selection-start-column="40" selection-end-line="90" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="posting.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mario/zwinkle/templates/post/posting.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -100,6 +32,18 @@
       <file leaf-file-name="upload.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mario/zwinkle/templates/post/upload.html">
           <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="forms.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mario/zwinkle/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="64">
+              <caret line="83" selection-start-line="83" selection-end-line="83" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
@@ -141,11 +85,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mario/zwinkle/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="71" column="30" selection-start-line="71" selection-start-column="30" selection-end-line="71" selection-end-column="30" />
+            <state relative-caret-position="50">
+              <caret line="110" column="32" selection-start-line="110" selection-start-column="32" selection-end-line="110" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -281,17 +225,17 @@
         <option value="$PROJECT_DIR$/mario/zwinkle/static/css_index/kreatif.css" />
         <option value="$PROJECT_DIR$/mario/zwinkle/templates/mycollections/confirm_delete.html" />
         <option value="$PROJECT_DIR$/mario/zwinkle/templates/mycollections/collection_ujian.html" />
-        <option value="$PROJECT_DIR$/mario/zwinkle/forms.py" />
         <option value="$PROJECT_DIR$/mario/zwinkle/views.py" />
         <option value="$PROJECT_DIR$/mario/zwinkle/templates/base_post.html" />
         <option value="$PROJECT_DIR$/mario/zwinkle/models.py" />
+        <option value="$PROJECT_DIR$/mario/zwinkle/forms.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="y" value="23" />
+  <component name="ProjectFrameBounds">
+    <option name="y" value="22" />
     <option name="width" value="1366" />
-    <option name="height" value="696" />
+    <option name="height" value="697" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -453,17 +397,16 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1366" height="768" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="22" width="1366" height="697" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26319703" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26319703" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3283582" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.3283582" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.5044776" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.58578855" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -778,16 +721,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mario/zwinkle/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35">
-          <caret line="55" column="20" lean-forward="true" selection-start-line="55" selection-start-column="20" selection-end-line="55" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mario/zwinkle/templates/base_krida.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -861,8 +794,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mario/zwinkle/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="71" column="30" selection-start-line="71" selection-start-column="30" selection-end-line="71" selection-end-column="30" />
+        <state relative-caret-position="50">
+          <caret line="110" column="32" selection-start-line="110" selection-start-column="32" selection-end-line="110" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mario/zwinkle/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="83" selection-start-line="83" selection-end-line="83" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
