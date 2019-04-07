@@ -64,7 +64,7 @@ class PostModel(models.Model):
     )
 
     def __str__(self):
-        return "{}.{}".format(self.id,self.judul)
+        return "{}".format(self.kategori)
 
 hasil_ujian = (
     ('LULUS', 'Lulus'),

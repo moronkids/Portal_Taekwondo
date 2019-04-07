@@ -57,7 +57,7 @@ class CollectionTitleForm(forms.ModelForm):
 
 CollectionTitleFormSet = inlineformset_factory(
     Collection, CollectionTitle, form=CollectionTitleForm,
-    fields=['sabukujian', 'sabukawal', 'hasilujian', 'waktu'], extra=1, can_delete=True
+    fields=['sabukujian', 'sabukawal', 'hasilujian', 'waktu'], extra=0, can_delete=True
     )
 
 
