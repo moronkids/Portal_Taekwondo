@@ -1,15 +1,20 @@
-from .models import Collection
+from .models import Collection, PostModel
+from django import forms
 import django_filters
 
 
 class kridafilter(django_filters.FilterSet):
-    name = django_filters.CharFilter(lookup_expr='icontains')
-    dojang = django_filters.CharFilter(lookup_expr='icontains')
+    nama = django_filters.CharFilter(lookup_expr='icontains')
 
     class Meta:
         model = Collection
         fields = [
-            'name',
-            # 'hasilujian',
-            'dojang',
+            'nama',
         ]
+
+
+class postfilter(django_filters.FilterSet):
+    kategori = django_filters.ModelMultipleChoiceFilter(queryset=PostModel.objects.all(), widget=forms.CheckboxSelectMultiple)
+    class Meta:
+        model = PostModel
+        fields = ['kategori',]

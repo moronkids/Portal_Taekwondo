@@ -6,7 +6,7 @@ from . models import konten, PostModel, Collection, foto, CollectionTitle
 from zwinkle.forms import PostForm, CollectionForm, CollectionTitleFormSet
 from allauth.account.forms import LoginForm
 from django.contrib.auth.decorators import login_required
-from .filters import kridafilter
+from .filters import kridafilter, postfilter
 from django import template
 from django.shortcuts import render,redirect
 from django.forms import modelformset_factory, inlineformset_factory
@@ -17,6 +17,7 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator
+from urllib import request
 register = template.Library()
 
 #---------- view foto -----
@@ -36,11 +37,13 @@ def fotoview(request):
 def tes(request):
     return render(request, 'tes.html')
 
+
+
 @register.filter(name='superuser')
 def home_post(request):
-    user_list = PostModel.objects.all()
+    user_list = PostModel.objects.all().order_by('kategori')
     page = request.GET.get('page', 1)
-
+    user_filterx = postfilter(request.GET, queryset=user_list)
     paginator = Paginator(user_list, 4)
     try:
         users = paginator.page(page)
@@ -50,7 +53,8 @@ def home_post(request):
         users = paginator.page(paginator.num_pages)
     context = {
        'page_title':'Krida Taekwondo News',
-        'users':users
+        'users':users,
+        'filter':user_filterx
     }
     return render(request, 'base_post.html', context)
 # def home_post(request):
@@ -126,23 +130,18 @@ def about_krida(request):
 
 # ----------- baru krida ---------------
 
-class HomepageView(TemplateView):
-    template_name = "mycollections/base.html"
+def base(request):
+    user_list = Collection.objects.all().order_by('nama')
+    user_filter = kridafilter(request.GET, queryset=user_list)
+    return render(request, 'mycollections/base.html', {'filter': user_filter})
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['collections'] = Collection.objects.order_by('id')
-        return context
 
-class Ujian(TemplateView):
-    template_name = "mycollections/collection_ujian.html"
+def Ujian(request):
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['collections'] = Collection.objects.filter(has_titles__hasilujian__contains="-", ).order_by('-id')
-        context['x']=CollectionTitle.objects.all().order_by('-hasilujian')
-        return context
 
+    user_list = Collection.objects.filter(has_titles__hasilujian__contains="AKAN UJIAN", ).order_by('nama')
+    user_filter = kridafilter(request.GET, queryset=user_list)
+    return render(request, 'mycollections/collection_ujian.html', {'filter': user_filter})
 
 ##########################################################################
 #                           Collection views                             #
@@ -225,3 +224,4 @@ class CollectionDelete(DeleteView):
     model = Collection
     template_name = 'mycollections/confirm_delete.html'
     success_url = reverse_lazy('reviews:homepage')
+

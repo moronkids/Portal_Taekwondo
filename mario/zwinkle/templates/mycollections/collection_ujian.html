@@ -1,4 +1,7 @@
 {% extends "index_krida.html" %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{% load widget_tweaks %}
 {% block content %}
 <style>
   .jumbotron {
@@ -11,7 +14,19 @@
         <div class="card-header">
             <h1 style="text-align:center;color:#f05f40;font-weight:bolder;"><b>Peserta Ujian</b></h1>
         </div>
+          <form method="get">
+      <div class="row">
+        <div class="form-group col-sm-4 col-md-3">
+          {{ filter.form.nama.label_tag }}
+          {% render_field filter.form.nama class="form-control" %}
+        </div>
+                   <div style="padding-top:32px;">
+                       <button type="submit" class="btn btn-primary" >
+        <span class="glyphicon glyphicon-search"></span> Cari
+                       </button></div>
+          </div>
 
+  </form>
 
 <!--<table class="table" style="width:100%">-->
   <!--<tr>-->
@@ -45,16 +60,17 @@
     <th class="tg-s268" colspan="7"></th>
   </tr>
   <tr>
-    <td class="tg-s268">No</td>
-    <td class="tg-s268">ID</td>
-    <td class="tg-s268">Dojang</td>
-    <td class="tg-s268">Nama</td>
-    <td class="tg-s268">Dari Sabuk</td>
-    <td class="tg-s268">Ke Sabuk</td>
-    <td class="tg-s268">Waktu</td>
+    <th class="tg-s268">No</th>
+    <th class="tg-s268">ID</th>
+    <th class="tg-s268">Dojang</th>
+    <th class="tg-s268">Nama</th>
+    <th class="tg-s268">Dari Sabuk</th>
+    <th class="tg-s268">Ke Sabuk</th>
+    <th class="tg-s268">Waktu</th>
   </tr>
     <tr>
-    {% for x in collections %}
+    {% if filter.qs %}
+    {% for x in filter.qs %}
     <td class="tg-s268">{{forloop.counter}}</td>
     <td class="tg-s268">{{x.id}}</td>
     <td class="tg-s268">{{x.dojang}}</td>
@@ -68,6 +84,9 @@
     {% endif %}
     {% endfor %}
     {% endfor %}
+            {% else %}
+    <td scope="row">Tidak Ada Peserta</td>
+    {% endif %}
 
 </th>
   </th>
