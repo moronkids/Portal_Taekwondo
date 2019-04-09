@@ -92,6 +92,11 @@ def create(request):
     }
     return render(request, 'post/posting.html', context)
 
+def about(request):
+    return render(request, 'krida/about.html')
+
+def nilai(request):
+    return render(request, 'krida/nilai.html')
 
 @login_required(redirect_field_name='delete')
 def delete(request, delete_id):
@@ -123,9 +128,6 @@ def update(request, update_id):
     return render(request, 'post/posting.html', context)
 
 # -------------------------------------------------------------------------------
-
-def about_krida(request):
-    return render(request, 'krida/about.html')
 
 
 # ----------- baru krida ---------------

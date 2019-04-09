@@ -1,12 +1,37 @@
-{% extends "index_krida.html"  %}
+{% extends "index_krida.html" %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
 {% load widget_tweaks %}
-
 {% block content %}
-<div class="container-fluid js-scroll-trigger" >
-<div class="jumbotron vertical-center" style="background:inherit;">
+<style>
+  .jumbotron {
+    background-color:transparent !important;
+}
+</style>
+    <div class="container-fluid js-scroll-trigger" style="color-background;">
+      <div class="jumbotron vertical-center" style="color-background:none;">
+<div class="card">
+        <div class="card-header">
+            <h1 style="text-align:center;color:#f05f40;font-weight:bolder;"><b>About</b></h1>
+        </div>
+          <form method="get">
+      <div class="row">
+        <div class="form-group col-sm-4 col-md-3">
+          {{ filter.form.nama.label_tag }}
+          {% render_field filter.form.nama class="form-control" %}
+        </div>
+                   <div style="padding-top:32px;">
+                       <button type="submit" class="btn btn-primary" >
+        <span class="glyphicon glyphicon-search"></span> Cari
+                       </button></div>
+          </div>
 
-<h1 style="text-align:center;padding-bottom:50px;color:#f05f40;font-weight:bolder;">About</h1>
-
-{% endblock %}
+  </form>
 
 
+        </div>
+</div>
+      </div>
+    </div>
+{% endblock content %}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus cupiditate dignissimos distinctio, dolor doloremque ea eligendi est eveniet illo impedit ipsam laudantium nemo optio, rem repellendus sed ut vitae.
