@@ -95,9 +95,6 @@ def create(request):
 def about(request):
     return render(request, 'krida/about.html')
 
-def nilai(request):
-    return render(request, 'krida/nilai.html')
-
 @login_required(redirect_field_name='delete')
 def delete(request, delete_id):
     PostModel.objects.filter(id=delete_id).delete()
@@ -139,11 +136,14 @@ def base(request):
 
 
 def Ujian(request):
-
-
-    user_list = Collection.objects.filter(has_titles__hasilujian__contains="AKAN UJIAN", ).order_by('nama')
+    user_list = Collection.objects.filter(has_titles__hasilujian__contains="AKAN UJIAN", ).order_by('id')
     user_filter = kridafilter(request.GET, queryset=user_list)
     return render(request, 'mycollections/collection_ujian.html', {'filter': user_filter})
+
+def nilai(request):
+    user_list = Collection.objects.filter(filters="OFF").order_by('id')
+    user_filter = kridafilter(request.GET, queryset=user_list)
+    return render(request, 'krida/nilai.html', {'filter': user_filter})
 
 ##########################################################################
 #                           Collection views                             #

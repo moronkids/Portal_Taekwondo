@@ -57,7 +57,7 @@ class CollectionTitleForm(forms.ModelForm):
 
 CollectionTitleFormSet = inlineformset_factory(
     Collection, CollectionTitle, form=CollectionTitleForm,
-    fields=['sabukujian', 'sabukawal', 'hasilujian', 'waktu'], extra=0, can_delete=True
+    fields=['sabukujian', 'sabukawal', 'hasilujian', 'waktu'], extra=1, can_delete=True
     )
 
 
@@ -77,17 +77,16 @@ class CollectionForm(forms.ModelForm):
         self.helper.layout = Layout(
             Div(
                 Field('gambar'),
+                Field('id_reg'),
                 Field('nama'),
                 Field('ttl'),
                 Field('dojang'),
-                Field('umur'),
-
+                Field('tempat_lahir'),
+                Field('tanggal_lahir'),
                 Fieldset('Tambah Ujian',
                     Formset('titles')),
-                Field('note'),
+                Field('filters'),
                 HTML("<br>"),
                 ButtonHolder(Submit('submit', 'Save')),
             )
             )
-
-

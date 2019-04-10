@@ -8,7 +8,6 @@ from . import views
 app_name = 'zwinkle'
 urlpatterns = [
     path('admin/', admin.site.urls),
-
     path('create/', views.create, name='create'),
     path('krida/ujian', views.Ujian, name='ujian'),
     path('', views.home_post, name="blog"),

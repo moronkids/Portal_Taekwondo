@@ -41,10 +41,10 @@
 
       <div class="card" style="color-background">
          <div class="card-header">
-            <h1 style="text-align:center;color:#f05f40;font-weight:bolder;"><b>Daftar Anggota</b></h1>
+            <h1 style="text-align:center;color:#f05f40;font-weight:bolder;"><b>Daftar Semua Anggota</b></h1>
         </div>
         <div class="card-body">
-          <a class="btn btn-primary" href="{% url 'reviews:collection_create' %}" role="button">Tambah Peserta Ujian</a>
+          <a class="btn btn-primary" href="{% url 'reviews:collection_create' %}" role="button">Tambah Anggota</a>
           <div>
 
             </div>
@@ -89,19 +89,19 @@
 
                 <td scope="row">{{forloop.counter}}</td>
                    {% if object.dojang == 'Krida' %}
-                  <td><a>KRD/</a>{{object.id}}</td>
+                  <td><a>KRD/</a>{{object.id_reg}}</td>
                   <td>{{object.dojang}}</td>
                 {% elif object.dojang == 'Bumi Putera'%}
-                  <td><a>BP/</a>{{object.id}}</td>
+                  <td><a>BP/</a>{{object.id_reg}}</td>
                   <td>{{object.dojang}}</td>
               {% elif object.dojang == 'Satria Muda'%}
-                  <td><a>SM/</a>{{object.id}}</td>
+                  <td><a>SM/</a>{{object.id_reg}}</td>
                   <td>{{object.dojang}}</td>
               {% elif object.dojang == 'Black Eagle'%}
-                  <td><a>BE/</a>{{object.id}}</td>
+                  <td><a>BE/</a>{{object.id_reg}}</td>
                   <td>{{object.dojang}}</td>
               {% elif object.dojang == 'Bangunharjo'%}
-                  <td><a>BH/</a>{{object.id}}</td>
+                  <td><a>BH/</a>{{object.id_reg}}</td>
                   <td>{{object.dojang}}</td>
                   {% endif %}
 

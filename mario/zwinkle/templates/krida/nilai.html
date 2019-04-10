@@ -8,11 +8,11 @@
     background-color:transparent !important;
 }
 </style>
-    <div class="container-fluid js-scroll-trigger" style="color-background;">
+    <div class="container-fluid js-scroll-trigger" style="color-background;" >
       <div class="jumbotron vertical-center" style="color-background:none;">
 <div class="card">
         <div class="card-header">
-            <h1 style="text-align:center;color:#f05f40;font-weight:bolder;"><b>Nilai Ujian</b></h1>
+            <h1 style="text-align:center;color:#f05f40;font-weight:bolder;"><b>Hasil Ujian</b></h1>
         </div>
           <form method="get">
       <div class="row">
@@ -27,6 +27,74 @@
           </div>
 
   </form>
+
+<!--<table class="table" style="width:100%">-->
+  <!--<tr>-->
+  <!--<th colspan="2">-->
+    <!--<h1>x</h1>-->
+  <!--</th>-->
+  <!--<th colspan="2">-->
+      <!--<td>Dari Sabuk</td>-->
+      <!--<td>Ke Sabuk</td>-->
+      <!--<td>Waktu</td>-->
+  <!--</th>-->
+  <!--</tr>-->
+  <!--<tr>-->
+      <!--<td>No</td>-->
+      <!--<td>ID</td>-->
+      <!--<td>Dojang</td>-->
+      <!--<td>Nama</td>-->
+    <!--<tr></tr>-->
+      <!--{% for x in collections %}-->
+      <!--<td>{{forloop.counter}}</td>-->
+      <!--<td>{{x.id}}</td>-->
+      <!--<td>{{x.dojang}}</td>-->
+      <!--<td>{{x.nama}}</td>-->
+    <!--<tr></tr>-->
+      <!--{% endfor %}-->
+  <!--</tr>-->
+
+<!--</table>-->
+<table class="table">
+  <tr>
+    <th class="tg-s268" colspan="7"></th>
+  </tr>
+  <tr>
+    <th class="tg-s268">No</th>
+    <th class="tg-s268">ID</th>
+    <th class="tg-s268">Dojang</th>
+    <th class="tg-s268">Nama</th>
+    <th class="tg-s268">Dari Sabuk</th>
+    <th class="tg-s268">Ke Sabuk</th>
+    <th class="tg-s268">Hasil Ujian</th>
+  </tr>
+    <tr>
+    {% if filter.qs %}
+    {% for x in filter.qs %}
+    <td class="tg-s268">{{forloop.counter}}</td>
+    <td class="tg-s268">{{x.id}}</td>
+    <td class="tg-s268">{{x.dojang}}</td>
+    <td class="tg-s268">{{x.nama}}</td>
+    {% for z in x.has_titles.all %}
+        {% if forloop.last %}
+            {% if z.hasilujian != "AKAN UJIAN"%}
+                <td class="tg-s268">{{z.sabukawal}}</td>
+                <td class="tg-s268">{{z.sabukujian}}</td>
+                <td class="tg-s268">{{z.hasilujian}}</td>
+            {% elif forloop.first %}
+<tr></tr>
+        {% endif %}
+        {% endif %}
+    {% endfor %}
+    {% endfor %}
+            {% else %}
+    <td scope="row">Tidak Ada Peserta</td>
+    {% endif %}
+
+</th>
+  </th>
+    </tr>
+</table>
 
 
         </div>

@@ -98,18 +98,31 @@ dojang = (
     ('Black Eagle', 'Black Eagle'),
     ('Bangunharjo', 'Bangunharjo'),
 )
+filter = (
+    ('ON', 'ON'),
+    ('OFF', 'OFF'),
+)
 
-class Collection(models.Model):
-    gambar = models.FileField(upload_to='images', null=True)
-    nama = models.CharField(max_length=300, blank=True)
-    ttl = models.CharField(max_length=300, blank=True)
+class dojang(models.Model):
     dojang = models.CharField(
         max_length=300,
         choices=dojang,
         default='-',
     )
-    umur = models.IntegerField()
-    note = models.TextField(blank=True)
+
+class Collection(models.Model):
+    ke_dojang = models.ForeignKey(dojang,
+                                   related_name="dojang_fk", on_delete=models.CASCADE)
+    gambar = models.FileField(upload_to='images', null=True)
+    id_reg = models.IntegerField(blank=True)
+    nama = models.CharField(max_length=300, blank=True)
+    tempat_lahir = models.CharField(max_length=300, blank=True)
+    tanggal_lahir = models.DateField(default=datetime.date.today)
+    filters = models.CharField(
+        max_length=300,
+        choices=filter,
+        default='OFF',
+    )
 
     def __str__(self):
         return str(self.nama)
@@ -122,7 +135,6 @@ class Collection(models.Model):
 class CollectionTitle(models.Model):
     """
     A Class for Collection titles.
-
     """
     collection = models.ForeignKey(Collection,
         related_name="has_titles", on_delete=models.CASCADE)
