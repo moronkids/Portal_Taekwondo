@@ -44,8 +44,11 @@
             <h1 style="text-align:center;color:#f05f40;font-weight:bolder;"><b>Daftar Semua Anggota</b></h1>
         </div>
         <div class="card-body">
-          <a class="btn btn-primary" href="{% url 'reviews:collection_create' %}" role="button">Tambah Anggota</a>
-          <div>
+          <a class="btn btn-primary" href="{% url 'reviews:anggota_create' %}" role="button">Tambah Anggota</a>
+          <a class="btn btn-primary" href="{% url 'reviews:collection_create' %}" role="button">Tambah Ujian</a>
+            <div>
+<br/>
+
 
             </div>
         </div>
@@ -77,37 +80,18 @@
             <thead>
             <tr>
                 <th scope="col">No</th>
-                <th scope="col">ID</th>
-                <th scope="col">Krida</th>
+                <th scope="col">No ID</th>
                 <th scope="col">Nama</th>
-
             </tr>
             </thead>
             <thead>
             {% if filter.qs %}
-            {% for object in filter.qs %}
+            {% for z in filter.qs %}
+            <td scope="row">{{forloop.counter}}</td>
+            <td>{{z.id_reg}}</td>
+            <td><a href="{% url 'reviews:anggota_detail' pk=z.pk %}">{{z.nama}}</td>
 
-                <td scope="row">{{forloop.counter}}</td>
-                   {% if object.dojang == 'Krida' %}
-                  <td><a>KRD/</a>{{object.id_reg}}</td>
-                  <td>{{object.dojang}}</td>
-                {% elif object.dojang == 'Bumi Putera'%}
-                  <td><a>BP/</a>{{object.id_reg}}</td>
-                  <td>{{object.dojang}}</td>
-              {% elif object.dojang == 'Satria Muda'%}
-                  <td><a>SM/</a>{{object.id_reg}}</td>
-                  <td>{{object.dojang}}</td>
-              {% elif object.dojang == 'Black Eagle'%}
-                  <td><a>BE/</a>{{object.id_reg}}</td>
-                  <td>{{object.dojang}}</td>
-              {% elif object.dojang == 'Bangunharjo'%}
-                  <td><a>BH/</a>{{object.id_reg}}</td>
-                  <td>{{object.dojang}}</td>
-                  {% endif %}
-
-                <td scope="row" ><a href="{% url 'reviews:collection_detail' pk=object.pk %}">{{ object.nama}}</a></td>
-
-                <tr></tr>
+            <tr></tr>
             {% endfor %}
 
             {% else %}

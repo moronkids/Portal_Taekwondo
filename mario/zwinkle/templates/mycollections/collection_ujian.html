@@ -62,7 +62,6 @@
   <tr>
     <th class="tg-s268">No</th>
     <th class="tg-s268">ID</th>
-    <th class="tg-s268">Dojang</th>
     <th class="tg-s268">Nama</th>
     <th class="tg-s268">Dari Sabuk</th>
     <th class="tg-s268">Ke Sabuk</th>
@@ -73,15 +72,20 @@
     {% for x in filter.qs %}
     <td class="tg-s268">{{forloop.counter}}</td>
     <td class="tg-s268">{{x.id}}</td>
-    <td class="tg-s268">{{x.dojang}}</td>
     <td class="tg-s268">{{x.nama}}</td>
-    {% for z in x.has_titles.all %}
+    {% for z in x.daftar.all %}
+    {% for u in z.ujian.all|slice:":1"%}
         {% if forloop.last %}
-    <td class="tg-s268">{{z.sabukawal}}</td>
-    <td class="tg-s268">{{z.sabukujian}}</td>
-    <td class="tg-s268">{{z.waktu}}</td>
+        {% if u.hasilujian != "AKAN UJIAN" %}
 <tr></tr>
+    {% else %}
+      <td class="tg-s268">{{u.sabukawal}}</td>
+    <td class="tg-s268">{{u.sabukujian}}</td>
+    <td class="tg-s268">{{u.waktu}}</td>
+    <tr></tr>
     {% endif %}
+    {% endif %}
+    {% endfor %}
     {% endfor %}
     {% endfor %}
             {% else %}

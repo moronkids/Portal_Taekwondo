@@ -1,9 +1,9 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, CreateView
-from . models import konten, PostModel, Collection, foto, CollectionTitle
-from zwinkle.forms import PostForm, CollectionForm, CollectionTitleFormSet
+from django.views.generic import ListView, CreateView, UpdateView
+from . models import konten, PostModel, Collection, foto, CollectionTitle, Anggota, Person, City, Ujian
+from zwinkle.forms import PostForm, AnggotaForm, CollectionTitleFormSet, CollectionForm, CollectionFormSet, UjianForm
 from allauth.account.forms import LoginForm
 from django.contrib.auth.decorators import login_required
 from .filters import kridafilter, postfilter
@@ -18,8 +18,50 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator
 from urllib import request
+from django.contrib import messages
 register = template.Library()
+from dal import autocomplete
+from dal_select2_queryset_sequence.views import Select2QuerySetSequenceView
+# class LocationAutocompleteView(Select2QuerySetSequenceView):
+#     def get_queryset(self):
+#         dojang = Anggota.objects.all()
+#         peserta = Collection.objects.all()
+#
+#         if self.q:
+#             dojang = Anggota.filter(dojang__icontains=self.q)
+#             peserta = Collection.filter(anggota_uti__nama__icontains=self.q)
+#
+#         # Aggregate querysets
+#         qs = QuerySetSequence(dojang, peserta)
+#
+#         if self.q:
+#             # This would apply the filter on all the querysets
+#             qs = qs.filter(nama__icontains=self.q)
+#
+#         # This will limit each queryset so that they show an equal number
+#         # of results.
+#         qs = self.mixup_querysets(qs)
+#
+#         return qs
 
+class AnggotaAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+
+        qs = Collection.objects.all()
+        if self.q:
+            qs = qs.filter(nama__istartswith=self.q)
+
+        return qs
+
+class KridaAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+
+        qs = Anggota.objects.all()
+
+        if self.q:
+            qs = qs.filter(dojang__istartswith=self.q)
+
+        return qs
 #---------- view foto -----
 
 def fotoview(request):
@@ -126,22 +168,21 @@ def update(request, update_id):
 
 # -------------------------------------------------------------------------------
 
-
 # ----------- baru krida ---------------
 
 def base(request):
-    user_list = Collection.objects.all().order_by('nama')
-    user_filter = kridafilter(request.GET, queryset=user_list)
+    nama_list = Collection.objects.all().order_by('nama')
+    user_filter = kridafilter(request.GET, queryset=nama_list)
     return render(request, 'mycollections/base.html', {'filter': user_filter})
 
 
-def Ujian(request):
-    user_list = Collection.objects.filter(has_titles__hasilujian__contains="AKAN UJIAN", ).order_by('id')
+def ujian(request):
+    user_list = Collection.objects.filter(daftar__ujian_x__icontains="BELUM UJIAN").order_by('id')
     user_filter = kridafilter(request.GET, queryset=user_list)
     return render(request, 'mycollections/collection_ujian.html', {'filter': user_filter})
 
 def nilai(request):
-    user_list = Collection.objects.filter(filters="OFF").order_by('id')
+    user_list = Collection.objects.filter(daftar__ujian_x__icontains="SUDAH UJIAN")
     user_filter = kridafilter(request.GET, queryset=user_list)
     return render(request, 'krida/nilai.html', {'filter': user_filter})
 
@@ -151,20 +192,21 @@ def nilai(request):
 
 class CollectionDetailView(DetailView):
     model = Collection
-    template_name = 'mycollections/collection_detail.html'
+    template_name = 'mycollections/anggota_detail.html'
 
     def get_context_data(self, **kwargs):
         context = super(CollectionDetailView, self).get_context_data(**kwargs)
+        context['history'] = CollectionTitle.objects.all()
         return context
 
-class CollectionCreate(CreateView):
-    model = Collection
-    template_name = 'mycollections/collection_create.html'
-    form_class = CollectionForm
+class AnggotaCreate(CreateView):
+    model = Anggota
+    template_name = 'mycollections/anggota_create.html'
+    form_class = AnggotaForm
     success_url = None
 
     def get_context_data(self, **kwargs):
-        data = super(CollectionCreate, self).get_context_data(**kwargs)
+        data = super(AnggotaCreate, self).get_context_data(**kwargs)
         if self.request.POST:
             data['titles'] = CollectionTitleFormSet(self.request.POST, self.request.FILES or None)
         else:
@@ -179,11 +221,38 @@ class CollectionCreate(CreateView):
             if titles.is_valid():
                 titles.instance = self.object
                 titles.save()
-        return super(CollectionCreate, self).form_valid(form)
+        return super(AnggotaCreate, self).form_valid(form)
 
     def get_success_url(self):
         return reverse_lazy('reviews:collection_detail', kwargs={'pk': self.object.pk})
 
+class CollectionCreate(CreateView):
+    model = Ujian
+    template_name = 'mycollections/collection_create.html'
+    form_class = UjianForm
+    success_url = None
+
+    def get_context_data(self, **kwargs):
+        data = super(CollectionCreate, self).get_context_data(**kwargs)
+
+        if self.request.POST:
+            data['titles'] = CollectionFormSet(self.request.POST, self.request.FILES or None)
+        else:
+            data['titles'] = CollectionFormSet()
+        return data
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        titles = context['titles']
+        with transaction.atomic():
+            self.object = form.save()
+            if titles.is_valid():
+                titles.instance = self.object
+                titles.save()
+        return super(CollectionCreate, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('reviews:anggota_detail', kwargs={'pk': self.object.pk})
 
     # @method_decorator(login_required)
     # def dispatch(self, *args, **kwargs):
@@ -191,16 +260,17 @@ class CollectionCreate(CreateView):
 
 
 class CollectionUpdate(UpdateView):
-    model = Collection
-    form_class = CollectionForm
+    model = Ujian
     template_name = 'mycollections/collection_create.html'
+    form_class = UjianForm
 
     def get_context_data(self, **kwargs):
         data = super(CollectionUpdate, self).get_context_data(**kwargs)
+
         if self.request.POST:
-            data['titles'] = CollectionTitleFormSet(self.request.POST, instance=self.object)
+            data['titles'] = CollectionFormSet(self.request.POST, instance=self.object)
         else:
-            data['titles'] = CollectionTitleFormSet(instance=self.object)
+            data['titles'] = CollectionFormSet(instance=self.object)
         return data
 
     def form_valid(self, form):
@@ -217,13 +287,46 @@ class CollectionUpdate(UpdateView):
     def get_success_url(self):
         return reverse_lazy('reviews:collection_detail', kwargs={'pk': self.object.pk})
 
+class AnggotaUpdate(UpdateView):
+    model = Anggota
+    form_class = AnggotaForm
+    template_name = 'mycollections/anggota_create.html'
+
+    def get_context_data(self, **kwargs):
+        data = super(AnggotaUpdate, self).get_context_data(**kwargs)
+        if self.request.POST:
+            data['titles'] = CollectionTitleFormSet(self.request.POST, instance=self.object)
+        else:
+            data['titles'] = CollectionTitleFormSet(instance=self.object)
+        return data
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        titles = context['titles']
+        with transaction.atomic():
+            form.instance.created_by = self.request.user
+            self.object = form.save()
+            if titles.is_valid():
+                titles.instance = self.object
+                titles.save()
+        return super(AnggotaUpdate, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('reviews:anggota_detail', kwargs={'pk': self.object.pk})
+
     # @method_decorator(login_required)
     # def dispatch(self, *args, **kwargs):
-    #     return super(CollectionUpdate, self).dispatch(*args, **kwargs)
+#     #     return super(CollectionUpdate, self).dispatch(*args, **kwargs)
 
 
 class CollectionDelete(DeleteView):
+    model = Ujian
+    template_name = 'mycollections/confirm_delete.html'
+    success_url = reverse_lazy('reviews:homepage')
+
+class AnggotaDelete(DeleteView):
     model = Collection
     template_name = 'mycollections/confirm_delete.html'
     success_url = reverse_lazy('reviews:homepage')
+
 

@@ -33,13 +33,19 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'crispy_forms',
     'zwinkle.apps.ZwinkleConfig',
+    'dal',
+    'dal_select2',
+# 'dal_queryset_sequence',
+    # 'grappelli',
     'django.contrib.admin',
     'django.contrib.sites',
     'django.contrib.auth',
     'django.contrib.contenttypes',
+# 'dal_queryset_sequence',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+'selectable',
     'whitenoise.runserver_nostatic',
     'allauth',
     'allauth.account',
@@ -47,6 +53,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'django_filters',
     'dj_database_url',
+    'gm2m',
 
 
     ]

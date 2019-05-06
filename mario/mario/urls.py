@@ -25,4 +25,5 @@ urlpatterns = [
     path('blog/', include(('zwinkle.urls', 'zwinkle'), namespace='reviews')),
     path('', views.home, name='rumah'),  # new
     path('accounts/', include('allauth.urls')),
+    path('selectable/', include('selectable.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

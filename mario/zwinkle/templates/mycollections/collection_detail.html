@@ -86,14 +86,18 @@
             </tr>
             </thead>
             <thead>
-            {% if object.has_titles %}
-            {% for title in object.has_titles.all.reverse %}
+            {% if object %}
+            {% for title in object.daftar.all %}
+            {% for title in title.z.all.reverse %}
+
                 <td scope="row">{{forloop.counter}}</td>
                 <td scope="col">{{title.sabukawal}}</td>
                 <td scope="col">{{title.sabukujian}}</td>
                 <td scope="col">{{title.waktu}}</td>
                 <td scope="col">{{title.hasilujian}}</td>
                 <tr></tr>
+
+            {% endfor %}
             {% endfor %}
             {% endif %}
 

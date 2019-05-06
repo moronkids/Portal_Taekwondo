@@ -1,11 +1,11 @@
+from dal import autocomplete
 from django import forms
-from .models import PostModel, Collection, CollectionTitle
+from .models import PostModel, Collection, CollectionTitle, Anggota, Person, City, Ujian
 from django.forms import inlineformset_factory, ModelForm
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Fieldset, Div, HTML, ButtonHolder, Submit
 from .custom_layout_object import *
-
-
+from gm2m import GM2MField
 class PostForm(ModelForm):
     class Meta:
         model = PostModel
@@ -52,23 +52,23 @@ class PostForm(ModelForm):
 class CollectionTitleForm(forms.ModelForm):
 
     class Meta:
-        model = CollectionTitle
+        model = Collection
         exclude = ()
 
 CollectionTitleFormSet = inlineformset_factory(
-    Collection, CollectionTitle, form=CollectionTitleForm,
-    fields=['sabukujian', 'sabukawal', 'hasilujian', 'waktu'], extra=1, can_delete=True
+    Anggota, Collection, form=CollectionTitleForm,
+    fields=['id_reg', 'nama', 'tempat_lahir', 'tanggal_lahir', 'filters', 'gambar',], extra=1, can_delete=True
     )
 
 
-class CollectionForm(forms.ModelForm):
+class AnggotaForm(forms.ModelForm):
 
     class Meta:
-        model = Collection
-        exclude = ['created_by', ]
+        model = Anggota
+        exclude = ()
 
     def __init__(self, *args, **kwargs):
-        super(CollectionForm, self).__init__(*args, **kwargs)
+        super(AnggotaForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = True
         self.helper.form_class = 'form-horizontal'
@@ -76,13 +76,8 @@ class CollectionForm(forms.ModelForm):
         self.helper.field_class = 'col-md-12'
         self.helper.layout = Layout(
             Div(
-                Field('gambar'),
-                Field('id_reg'),
-                Field('nama'),
-                Field('ttl'),
+
                 Field('dojang'),
-                Field('tempat_lahir'),
-                Field('tanggal_lahir'),
                 Fieldset('Tambah Ujian',
                     Formset('titles')),
                 Field('filters'),
@@ -90,3 +85,44 @@ class CollectionForm(forms.ModelForm):
                 ButtonHolder(Submit('submit', 'Save')),
             )
             )
+
+
+class CollectionForm(forms.ModelForm):
+
+    class Meta:
+        model = CollectionTitle
+        exclude = ()
+
+CollectionFormSet = inlineformset_factory(
+    Ujian, CollectionTitle, form=CollectionForm,
+    fields = ['sabukawal', 'sabukujian', 'hasilujian', 'waktu',], extra=1, can_delete=True
+)
+
+class UjianForm(forms.ModelForm):
+    collection = forms.ModelChoiceField(
+        queryset=Collection.objects.all(),widget=autocomplete.ModelSelect2(url='reviews:anggota-autocomplete'))
+    class Meta:
+        model = Ujian
+        exclude = ()
+
+    def __init__(self, *args, **kwargs):
+        super(UjianForm, self).__init__(*args, **kwargs)
+        self.fields['ujian_x'].widget.attrs['readonly'] = True
+        self.helper = FormHelper()
+        self.helper.form_tag = True
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-md-3'
+        self.helper.field_class = 'col-md-12'
+        self.helper.layout = Layout(
+            Div(
+                Field('collection'),
+                Field('ujian_x'),
+                Fieldset('Tambah Ujian',
+                    Formset('titles')),
+                HTML("<br>"),
+                ButtonHolder(Submit('submit', 'Save')),
+            )
+            )
+
+
+

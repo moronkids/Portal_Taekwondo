@@ -7,13 +7,16 @@
 }
 </style>
     <div class="container-fluid js-scroll-trigger" style="color-background;">
-      <div class="jumbotron vertical-center col-md-8" style="margin:0 auto;color-background:none;">
+      <div class="jumbotron vertical-center" style="margin:0 auto;color-background:none;">
     <div class="card">
         <div class="card-header">
             Tambah Peserta
         </div>
         <div class="container" style="margin:0 auto;">
-             {% crispy form %}
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% crispy form %}
+            </form>
         </div>
     </div>
 </div>

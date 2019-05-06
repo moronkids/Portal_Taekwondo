@@ -5,7 +5,6 @@ import django_filters
 
 class kridafilter(django_filters.FilterSet):
     nama = django_filters.CharFilter(lookup_expr='icontains')
-
     class Meta:
         model = Collection
         fields = [

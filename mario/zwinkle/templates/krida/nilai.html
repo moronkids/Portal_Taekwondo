@@ -62,7 +62,7 @@
   <tr>
     <th class="tg-s268">No</th>
     <th class="tg-s268">ID</th>
-    <th class="tg-s268">Dojang</th>
+
     <th class="tg-s268">Nama</th>
     <th class="tg-s268">Dari Sabuk</th>
     <th class="tg-s268">Ke Sabuk</th>
@@ -70,24 +70,27 @@
   </tr>
     <tr>
     {% if filter.qs %}
-    {% for x in filter.qs %}
-    <td class="tg-s268">{{forloop.counter}}</td>
-    <td class="tg-s268">{{x.id}}</td>
-    <td class="tg-s268">{{x.dojang}}</td>
-    <td class="tg-s268">{{x.nama}}</td>
-    {% for z in x.has_titles.all %}
-        {% if forloop.last %}
-            {% if z.hasilujian != "AKAN UJIAN"%}
-                <td class="tg-s268">{{z.sabukawal}}</td>
-                <td class="tg-s268">{{z.sabukujian}}</td>
-                <td class="tg-s268">{{z.hasilujian}}</td>
-            {% elif forloop.first %}
-<tr></tr>
-        {% endif %}
-        {% endif %}
-    {% endfor %}
-    {% endfor %}
-            {% else %}
+        {% for x in filter.qs %}
+
+                <td class="tg-s268">{{forloop.counter}}</td>
+                        <td class="tg-s268">{{x.id}}</td>
+                        <td class="tg-s268">{{x.nama}}</td>
+
+                {% for z in x.daftar.all %}
+                    {% for u in z.ujian.all|slice:":1" %}
+                        {% if forloop.first %}
+                        {% if u.hasilujian != "AKAN UJIAN"%}
+                        <td class="tg-s268">{{u.sabukawal}}</td>
+                        <td class="tg-s268">{{u.sabukujian}}</td>
+                        <td class="tg-s268">{{u.hasilujian}}</td>
+                        <tr></tr>
+                        {% endif %}
+                        {% endif %}
+
+                    {% endfor %}
+                {% endfor %}
+        {% endfor %}
+    {% else %}
     <td scope="row">Tidak Ada Peserta</td>
     {% endif %}
 
