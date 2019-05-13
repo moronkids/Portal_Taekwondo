@@ -12,8 +12,8 @@ class kridafilter(django_filters.FilterSet):
         ]
 
 
-class postfilter(django_filters.FilterSet):
-    kategori = django_filters.ModelMultipleChoiceFilter(queryset=PostModel.objects.all(), widget=forms.CheckboxSelectMultiple)
-    class Meta:
-        model = PostModel
-        fields = ['kategori',]
+# class postfilter(django_filters.FilterSet):
+#     kategori = django_filters.ModelMultipleChoiceFilter(queryset=PostModel.objects.all(), widget=forms.CheckboxSelectMultiple)
+#     class Meta:
+#         model = PostModel
+#         fields = ['kategori',]

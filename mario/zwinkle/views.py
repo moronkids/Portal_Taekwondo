@@ -6,7 +6,7 @@ from . models import konten, PostModel, Collection, foto, CollectionTitle, Anggo
 from zwinkle.forms import PostForm, AnggotaForm, CollectionTitleFormSet, CollectionForm, CollectionFormSet, UjianForm
 from allauth.account.forms import LoginForm
 from django.contrib.auth.decorators import login_required
-from .filters import kridafilter, postfilter
+from .filters import kridafilter
 from django import template
 from django.shortcuts import render,redirect
 from django.forms import modelformset_factory, inlineformset_factory
@@ -47,7 +47,7 @@ from dal_select2_queryset_sequence.views import Select2QuerySetSequenceView
 class AnggotaAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
 
-        qs = Collection.objects.all()
+        qs = Collection.objects.exclude(has_titles__hasilujian__isnull=True)
         if self.q:
             qs = qs.filter(nama__istartswith=self.q)
 
@@ -83,9 +83,9 @@ def tes(request):
 
 @register.filter(name='superuser')
 def home_post(request):
-    user_list = PostModel.objects.all().order_by('kategori')
+    user_list = PostModel.objects.all()
     page = request.GET.get('page', 1)
-    user_filterx = postfilter(request.GET, queryset=user_list)
+    # user_filterx = postfilter(request.GET, queryset=user_list)
     paginator = Paginator(user_list, 4)
     try:
         users = paginator.page(page)
@@ -96,7 +96,7 @@ def home_post(request):
     context = {
        'page_title':'Krida Taekwondo News',
         'users':users,
-        'filter':user_filterx
+        # 'filter':user_filterx
     }
     return render(request, 'base_post.html', context)
 # def home_post(request):

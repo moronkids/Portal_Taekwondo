@@ -67,14 +67,10 @@ class PostModel(models.Model):
     penulis   = models.CharField(max_length=100)
     gambar = models.FileField(upload_to='images', null=True)
     isi   = models.CharField(max_length=1000)
-    kategori   = models.CharField(
-        max_length=100,
-        choices=CHOICES,
-        default=1,
-    )
+
 
     def __str__(self):
-        return "{}".format(self.kategori)
+        return "{}".format(self.judul)
 
 hasil_ujian = (
     ('LULUS', 'Lulus'),
@@ -139,11 +135,11 @@ class Collection(models.Model):
     nama = models.CharField(max_length=300, blank=True, null=True)
     tempat_lahir = models.CharField(max_length=300, blank=True, null=True)
     tanggal_lahir = models.DateField(default=datetime.date.today)
-    filters = models.CharField(
-        max_length=300,
-        choices=filter,
-        default='OFF',
-    )
+    # filters = models.CharField(
+    #     max_length=300,
+    #     choices=filter,
+    #     default='OFF',
+    # )
 
     def __str__(self):
         return str(self.nama)

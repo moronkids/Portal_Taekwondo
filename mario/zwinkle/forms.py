@@ -14,7 +14,6 @@ class PostForm(ModelForm):
         'penulis',
         'gambar',
         'isi',
-        'kategori',
         ]
 
 
@@ -36,11 +35,7 @@ class PostForm(ModelForm):
             }),
 
 
-            'kategori':forms.Select(attrs={
 
-                'class': 'form-control',
-                'choices':'CHOICES',
-            }),
 
         }
 
@@ -57,7 +52,7 @@ class CollectionTitleForm(forms.ModelForm):
 
 CollectionTitleFormSet = inlineformset_factory(
     Anggota, Collection, form=CollectionTitleForm,
-    fields=['id_reg', 'nama', 'tempat_lahir', 'tanggal_lahir', 'filters', 'gambar',], extra=1, can_delete=True
+    fields=['id_reg', 'nama', 'tempat_lahir', 'tanggal_lahir', 'gambar',], extra=1, can_delete=True
     )
 
 
@@ -80,7 +75,6 @@ class AnggotaForm(forms.ModelForm):
                 Field('dojang'),
                 Fieldset('Tambah Ujian',
                     Formset('titles')),
-                Field('filters'),
                 HTML("<br>"),
                 ButtonHolder(Submit('submit', 'Save')),
             )
