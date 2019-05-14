@@ -22,6 +22,28 @@ from django.contrib import messages
 register = template.Library()
 from dal import autocomplete
 from dal_select2_queryset_sequence.views import Select2QuerySetSequenceView
+from django.db.models import Q
+from django.views.generic import TemplateView
+from django_datatables_view.base_datatable_view import BaseDatatableView
+
+# from .models import TestModel
+
+class IndexView(TemplateView):
+    template_name = 'index2.html'
+
+class TestModelList(TemplateView):
+    model = CollectionTitle
+    template_name = 'testmodel_list.html'
+    def get_context_data(self, **kwargs):
+        context = super(TestModelList, self).get_context_data(**kwargs)
+        # context['history'] = CollectionTitle.objects.all()
+        return context
+
+
+class TestModelListJson(BaseDatatableView):
+    model = Collection
+
+    # columns and order columns are provided by datatables in the request using "name" in columns definition
 # class LocationAutocompleteView(Select2QuerySetSequenceView):
 #     def get_queryset(self):
 #         dojang = Anggota.objects.all()
@@ -47,7 +69,11 @@ from dal_select2_queryset_sequence.views import Select2QuerySetSequenceView
 class AnggotaAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
 
+<<<<<<< Updated upstream
         qs = Collection.objects.all()
+=======
+        qs = Collection.objects.exclude(has_titles__hasilujian__icontains=False)
+>>>>>>> Stashed changes
         if self.q:
             qs = qs.filter(nama__istartswith=self.q)
 

@@ -4,15 +4,13 @@ from django.db import models
 from django.utils import timezone
 from PIL import Image
 from gm2m import GM2MField
-
-
-class TestModel(models.Model):
-    name = models.CharField(max_length=200)
-
-    locations = GM2MField()
-
-    def __str__(self):
-        return self.name
+# class TestModel(models.Model):
+#     name = models.CharField('Name', max_length=50, default='', blank=False)
+#     description = models.TextField('Description', default='')
+#
+#     @property
+#     def testproperty(self):
+#         return '{} testprop'.format(self.name)
 # Create your models here.
 #----- TEMP FILE IMAGE ----
 
@@ -108,10 +106,7 @@ dojang = (
     ('Black Eagle', 'Black Eagle'),
     ('Bangunharjo', 'Bangunharjo'),
 )
-filter = (
-    ('ON', 'ON'),
-    ('OFF', 'OFF'),
-)
+
 a = (
     ('BELUM UJIAN', 'BELUM UJIAN'),
     ('SUDAH UJIAN', 'SUDAH UJIAN'),
@@ -139,14 +134,22 @@ class Collection(models.Model):
     nama = models.CharField(max_length=300, blank=True, null=True)
     tempat_lahir = models.CharField(max_length=300, blank=True, null=True)
     tanggal_lahir = models.DateField(default=datetime.date.today)
+<<<<<<< Updated upstream
     filters = models.CharField(
         max_length=300,
         choices=filter,
         default='OFF',
     )
+=======
+
+>>>>>>> Stashed changes
 
     def __str__(self):
         return str(self.nama)
+
+    @property
+    def testproperty(self):
+        return '{} testprop'.format(self.nama)
 
     @property
     def last_log(self):

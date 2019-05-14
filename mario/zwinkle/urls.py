@@ -1,13 +1,17 @@
 # my_project/urls.py
+from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf.urls.static import static
 from django.conf import settings
 from django.urls import path
 from . import views
-from .views import AnggotaAutocomplete, KridaAutocomplete
+from .views import AnggotaAutocomplete, KridaAutocomplete, TestModelList, TestModelListJson, IndexView
 app_name = 'zwinkle'
 urlpatterns = [
+                  url(r'^testmodel$', TestModelList.as_view(), name="testmodel"),
+                  url(r'^cek$', IndexView.as_view(), name="index"),
+                  url(r'^testmodel_data/$', TestModelListJson.as_view(), name="testmodel_list_json"),
     path('admin/', admin.site.urls),
     path('create/', views.create, name='create'),
     path('krida/ujian', views.ujian, name='ujian'),
