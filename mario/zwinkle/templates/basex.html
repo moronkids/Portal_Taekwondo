@@ -1,0 +1,73 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+<title>Krida Taekwondo | UTI JOGJA</title>
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">-->
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "css_index/bootstrap.min.css" %}" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="{% static "css_index/all.min.css" %}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="{% static "css_index/magnific-popup.css" %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static "css_index/creative.min.css" %}" rel="stylesheet">
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+        {% block extra_head %}{% endblock %}
+<nav class="navbar navbar-expand-lg navbar-light fixed-top js-scroll-trigger" id="mainNav" style="">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'rumah' %}">UTI PRO JOGJA</a>
+        <button class="navbar-toggler navbar-toggler-right navbar-brand " type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item {{users}}">
+              <a class="nav-link" href="{% url 'reviews:blog' %}">Blog</a>
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            {% if request.user.is_active %}
+
+
+            <li class="nav-item {{filter}}">
+              <a class="nav-link" href="{% url 'reviews:homepage' %}">Daftar Anggota UTI</a>
+            </li>
+
+            {% endif %}
+
+            {% if request.user.is_staff %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'reviews:ujian' %}">Ujian</a>
+            </li>
+            {% endif %}
+
+            {% if request.user.is_active %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'reviews:nilai' %}">Nilai</a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'reviews:about' %}">About</a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <body>
+    <br>
+    <br>
+    <br>
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </body>
+</html>

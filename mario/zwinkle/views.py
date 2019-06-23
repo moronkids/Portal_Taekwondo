@@ -22,6 +22,36 @@ from django.contrib import messages
 register = template.Library()
 from dal import autocomplete
 from dal_select2_queryset_sequence.views import Select2QuerySetSequenceView
+from django.db.models import Q
+from django.views.generic import TemplateView
+from django_datatables_view.base_datatable_view import BaseDatatableView
+import  json
+# from .models import TestModel
+
+
+class IndexView(TemplateView):
+    template_name = 'index2.html'
+
+class TestModelList(TemplateView):
+    model = CollectionTitle
+    template_name = 'testmodel_list.html'
+    # daya
+    def get_context_data(self, **kwargs):
+        context = super(TestModelList, self).get_context_data(**kwargs)
+        # context['history'] = CollectionTitle.objects.all()
+        return context
+
+
+class TestModelListJson(BaseDatatableView):
+    model = CollectionTitle
+    # datatable_options = {
+    #     'columns': [
+    #         'namax',
+    #         ("hasilujian", 'has_titles__hasilujian'),
+    #     ],
+    # }
+
+    # columns and order columns are provided by datatables in the request using "name" in columns definition
 # class LocationAutocompleteView(Select2QuerySetSequenceView):
 #     def get_queryset(self):
 #         dojang = Anggota.objects.all()
@@ -46,22 +76,14 @@ from dal_select2_queryset_sequence.views import Select2QuerySetSequenceView
 
 class AnggotaAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
+        qs = Collection.objects.exclude(has_titles__hasilujian__icontains=False)
 
-        qs = Collection.objects.exclude(has_titles__hasilujian__isnull=True)
         if self.q:
             qs = qs.filter(nama__istartswith=self.q)
 
         return qs
 
-class KridaAutocomplete(autocomplete.Select2QuerySetView):
-    def get_queryset(self):
 
-        qs = Anggota.objects.all()
-
-        if self.q:
-            qs = qs.filter(dojang__istartswith=self.q)
-
-        return qs
 #---------- view foto -----
 
 def fotoview(request):
@@ -232,9 +254,10 @@ class CollectionCreate(CreateView):
     form_class = UjianForm
     success_url = None
 
+
     def get_context_data(self, **kwargs):
         data = super(CollectionCreate, self).get_context_data(**kwargs)
-
+        data['masuk'] = Collection.objects.all()
         if self.request.POST:
             data['titles'] = CollectionFormSet(self.request.POST, self.request.FILES or None)
         else:
@@ -250,6 +273,32 @@ class CollectionCreate(CreateView):
                 titles.instance = self.object
                 titles.save()
         return super(CollectionCreate, self).form_valid(form)
+
+class CollectionHistory(CreateView):
+    model = Ujian
+    template_name = 'mycollections/collection_create.html'
+    form_class = UjianForm
+    success_url = None
+
+
+    def get_context_data(self, **kwargs):
+        data = super(CollectionHistory, self).get_context_data(**kwargs)
+        data['masuk'] = Collection.objects.all()
+        if self.request.POST:
+            data['titles'] = CollectionFormSet(self.request.POST, self.request.FILES or None)
+        else:
+            data['titles'] = CollectionFormSet()
+        return data
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        titles = context['titles']
+        with transaction.atomic():
+            self.object = form.save()
+            if titles.is_valid():
+                titles.instance = self.object
+                titles.save()
+        return super(CollectionHistory, self).form_valid(form)
 
     def get_success_url(self):
         return reverse_lazy('reviews:anggota_detail', kwargs={'pk': self.object.pk})

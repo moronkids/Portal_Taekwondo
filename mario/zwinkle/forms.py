@@ -15,8 +15,6 @@ class PostForm(ModelForm):
         'gambar',
         'isi',
         ]
-
-
         widgets = {
             'judul':forms.TextInput(attrs={
                 'class':'form-control',
@@ -52,7 +50,11 @@ class CollectionTitleForm(forms.ModelForm):
 
 CollectionTitleFormSet = inlineformset_factory(
     Anggota, Collection, form=CollectionTitleForm,
-    fields=['id_reg', 'nama', 'tempat_lahir', 'tanggal_lahir', 'gambar',], extra=1, can_delete=True
+    fields=['id_reg', 'nama', 'tempat_lahir', 'tanggal_lahir', 'gambar',]
+    , widgets = {
+            'tanggal_lahir': forms.DateInput(attrs={'class':'datepicker'}),
+
+        }, extra=1, can_delete=True
     )
 
 
@@ -71,7 +73,6 @@ class AnggotaForm(forms.ModelForm):
         self.helper.field_class = 'col-md-12'
         self.helper.layout = Layout(
             Div(
-
                 Field('dojang'),
                 Fieldset('Tambah Ujian',
                     Formset('titles')),
@@ -95,6 +96,7 @@ CollectionFormSet = inlineformset_factory(
 class UjianForm(forms.ModelForm):
     collection = forms.ModelChoiceField(
         queryset=Collection.objects.all(),widget=autocomplete.ModelSelect2(url='reviews:anggota-autocomplete'))
+    print(collection)
     class Meta:
         model = Ujian
         exclude = ()
@@ -109,14 +111,15 @@ class UjianForm(forms.ModelForm):
         self.helper.field_class = 'col-md-12'
         self.helper.layout = Layout(
             Div(
-                Field('collection'),
+                Field('collection', name="tes"),
+                HTML("<button  css_class='btn-info' type='button' id='cari'>Cari</button>"),
+                HTML("<br>"),
                 Field('ujian_x'),
-                Fieldset('Tambah Ujian',
+                Fieldset('List Ujian'),
                     Formset('titles')),
                 HTML("<br>"),
                 ButtonHolder(Submit('submit', 'Save')),
-            )
-            )
+                )
 
 
 

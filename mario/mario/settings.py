@@ -53,9 +53,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'django_filters',
     'dj_database_url',
-    'gm2m',
-
-
+    'gm2m'
     ]
 SITE_ID = 1
 CRISPY_TEMPLATE_PACK = "bootstrap4"

@@ -45,7 +45,7 @@
         </div>
         <div class="card-body">
           <a class="btn btn-primary" href="{% url 'reviews:anggota_create' %}" role="button">Tambah Anggota</a>
-          <a class="btn btn-primary" href="{% url 'reviews:collection_create' %}" role="button">Tambah Ujian</a>
+
             <div>
 <br/>
 
@@ -82,6 +82,7 @@
                 <th scope="col">No</th>
                 <th scope="col">No ID</th>
                 <th scope="col">Nama</th>
+                <th scope="col">Action</th>
             </tr>
             </thead>
             <thead>
@@ -89,8 +90,10 @@
             {% for z in filter.qs %}
             <td scope="row">{{forloop.counter}}</td>
             <td>{{z.id_reg}}</td>
-            <td><a href="{% url 'reviews:anggota_detail' pk=z.pk %}">{{z.nama}}</td>
-
+            <td>{{z.nama}}</td>
+            <form action='{% url 'reviews:anggota_detail' pk=z.pk %}' method='GET'>
+            <td><button type="submit" class="btn btn-info">Detail</button></td>
+            </form>
             <tr></tr>
             {% endfor %}
 
