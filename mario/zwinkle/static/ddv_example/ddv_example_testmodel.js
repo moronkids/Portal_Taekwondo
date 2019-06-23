@@ -11,13 +11,13 @@ $(document).ready(function() {
             },
             {
 
-                name: 'waktu',
+                name: 'nama',
 
                 targets: [0]
             },
             {
 
-                name: 'hasilujian',
+                name: 'nama',
                 targets: [1]
             }
         ],

@@ -25,7 +25,9 @@ from dal_select2_queryset_sequence.views import Select2QuerySetSequenceView
 from django.db.models import Q
 from django.views.generic import TemplateView
 from django_datatables_view.base_datatable_view import BaseDatatableView
+from django.utils.html import escape
 import  json
+
 # from .models import TestModel
 
 
@@ -43,13 +45,16 @@ class TestModelList(TemplateView):
 
 
 class TestModelListJson(BaseDatatableView):
-    model = CollectionTitle
-    # datatable_options = {
-    #     'columns': [
-    #         'namax',
-    #         ("hasilujian", 'has_titles__hasilujian'),
-    #     ],
-    # }
+    model = Collection
+
+    def prepare_results(self, qs):
+        json_data = []
+        for item in qs:
+            json_data.append([
+                item.nama,
+                item.nama
+            ])
+        return json_data
 
     # columns and order columns are provided by datatables in the request using "name" in columns definition
 # class LocationAutocompleteView(Select2QuerySetSequenceView):
@@ -74,14 +79,25 @@ class TestModelListJson(BaseDatatableView):
 #
 #         return qs
 
+# class DojangAutocomplete(autocomplete.Select2QuerySetView):
+#     def get_queryset(self):
+#         qs = Anggota.objects.all()
+#
+#         if self.q:
+#             qs = qs.filter(dojang__istartswith=self.q)
+#
+#         return qs
+
 class AnggotaAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
-        qs = Collection.objects.exclude(has_titles__hasilujian__icontains=False)
+        qs = Collection.objects.all()
 
         if self.q:
             qs = qs.filter(nama__istartswith=self.q)
 
         return qs
+
+
 
 
 #---------- view foto -----
