@@ -115,7 +115,7 @@ class UjianForm(forms.ModelForm):
                 HTML("<button  css_class='btn-info' type='button' id='cari'>Cari</button>"),
                 HTML("<br>"),
                 Field('ujian_x'),
-                Fieldset('List Ujian'),
+                Fieldset('Tambah Ujian'),
                     Formset('titles')),
                 HTML("<br>"),
                 ButtonHolder(Submit('submit', 'Save')),

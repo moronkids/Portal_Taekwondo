@@ -35,6 +35,11 @@ urlpatterns = [
         AnggotaAutocomplete.as_view(),
         name='anggota-autocomplete',
     ),
+    # path(
+    #     r'dojang-autocomplete/',
+    #     DojangAutocomplete.as_view(),
+    #     name='dojang-autocomplete',
+    # ),
 
 
 
