@@ -1,0 +1,111 @@
+Index: mario/zwinkle/templates/mycollections/collection_ujian.html
+===================================================================
+--- mario/zwinkle/templates/mycollections/collection_ujian.html	(revision 7c74767ad5bc9db5a1baf96ee3e56fd904355bdd)
++++ mario/zwinkle/templates/mycollections/collection_ujian.html	(revision 7c74767ad5bc9db5a1baf96ee3e56fd904355bdd)
+@@ -1,105 +0,0 @@
+-{% extends "index_krida.html" %}
+-{% load crispy_forms_tags %}
+-{% load staticfiles %}
+-{% load widget_tweaks %}
+-{% block content %}
+-<style>
+-  .jumbotron {
+-    background-color:transparent !important;
+-}
+-</style>
+-    <div class="container-fluid js-scroll-trigger" style="color-background;" >
+-      <div class="jumbotron vertical-center" style="color-background:none;">
+-<div class="card">
+-        <div class="card-header">
+-            <h1 style="text-align:center;color:#f05f40;font-weight:bolder;"><b>Peserta Ujian</b></h1>
+-        </div>
+-          <form method="get">
+-      <div class="row">
+-        <div class="form-group col-sm-4 col-md-3">
+-          {{ filter.form.nama.label_tag }}
+-          {% render_field filter.form.nama class="form-control" %}
+-        </div>
+-                   <div style="padding-top:32px;">
+-                       <button type="submit" class="btn btn-primary" >
+-        <span class="glyphicon glyphicon-search"></span> Cari
+-                       </button></div>
+-          </div>
+-
+-  </form>
+-
+-<!--<table class="table" style="width:100%">-->
+-  <!--<tr>-->
+-  <!--<th colspan="2">-->
+-    <!--<h1>x</h1>-->
+-  <!--</th>-->
+-  <!--<th colspan="2">-->
+-      <!--<td>Dari Sabuk</td>-->
+-      <!--<td>Ke Sabuk</td>-->
+-      <!--<td>Waktu</td>-->
+-  <!--</th>-->
+-  <!--</tr>-->
+-  <!--<tr>-->
+-      <!--<td>No</td>-->
+-      <!--<td>ID</td>-->
+-      <!--<td>Dojang</td>-->
+-      <!--<td>Nama</td>-->
+-    <!--<tr></tr>-->
+-      <!--{% for x in collections %}-->
+-      <!--<td>{{forloop.counter}}</td>-->
+-      <!--<td>{{x.id}}</td>-->
+-      <!--<td>{{x.dojang}}</td>-->
+-      <!--<td>{{x.nama}}</td>-->
+-    <!--<tr></tr>-->
+-      <!--{% endfor %}-->
+-  <!--</tr>-->
+-
+-<!--</table>-->
+-<table class="table">
+-  <tr>
+-    <th class="tg-s268" colspan="7"></th>
+-  </tr>
+-  <tr>
+-    <th class="tg-s268">No</th>
+-    <th class="tg-s268">ID</th>
+-    <th class="tg-s268">Nama</th>
+-    <th class="tg-s268">Dari Sabuk</th>
+-    <th class="tg-s268">Ke Sabuk</th>
+-    <th class="tg-s268">Waktu</th>
+-  </tr>
+-    <tr>
+-    {% if filter.qs %}
+-    {% for x in filter.qs %}
+-    <td class="tg-s268">{{forloop.counter}}</td>
+-    <td class="tg-s268">{{x.id}}</td>
+-    <td class="tg-s268">{{x.nama}}</td>
+-    {% for z in x.daftar.all %}
+-    {% for u in z.ujian.all|slice:":1"%}
+-        {% if forloop.last %}
+-        {% if u.hasilujian != "AKAN UJIAN" %}
+-<tr></tr>
+-    {% else %}
+-      <td class="tg-s268">{{u.sabukawal}}</td>
+-    <td class="tg-s268">{{u.sabukujian}}</td>
+-    <td class="tg-s268">{{u.waktu}}</td>
+-    <tr></tr>
+-    {% endif %}
+-    {% endif %}
+-    {% endfor %}
+-    {% endfor %}
+-    {% endfor %}
+-            {% else %}
+-    <td scope="row">Tidak Ada Peserta</td>
+-    {% endif %}
+-
+-</th>
+-  </th>
+-    </tr>
+-</table>
+-
+-        </div>
+-</div>
+-      </div>
+-    </div>
+-{% endblock content %}
+-Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus cupiditate dignissimos distinctio, dolor doloremque ea eligendi est eveniet illo impedit ipsam laudantium nemo optio, rem repellendus sed ut vitae.
+\ No newline at end of file

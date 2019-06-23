@@ -18,7 +18,7 @@
       <div class="row">
         <div class="form-group col-sm-4 col-md-3">
           {{ filter.form.nama.label_tag }}
-          {% render_field filter.form.nama class="form-control" %}
+          {% render_field filter.form.nama class="form-control" id="cariujian" %}
         </div>
                    <div style="padding-top:32px;">
                        <button type="submit" class="btn btn-primary" >
@@ -66,6 +66,7 @@
     <th class="tg-s268">Dari Sabuk</th>
     <th class="tg-s268">Ke Sabuk</th>
     <th class="tg-s268">Waktu</th>
+    <th class="tg-s268">Action</th>
   </tr>
     <tr>
     {% if filter.qs %}

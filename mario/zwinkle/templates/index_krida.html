@@ -23,11 +23,16 @@
     <!-- Plugin CSS -->
     <link href="{% static "css_index/magnific-popup.css" %}" rel="stylesheet">
 
+
+
     <!-- Custom styles for this template -->
     <link href="{% static "css_index/creative.min.css" %}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.css" rel="stylesheet">
 <style>
   .asteriskField{
   display:none;}
+
+
 
 
 </style>
@@ -69,6 +74,14 @@
               <a class="nav-link" href="{% url 'reviews:nilai' %}">Nilai</a>
             </li>
             {% endif %}
+
+            {% if request.user.is_staff %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'reviews:collection_history' %}">History</a>
+
+            </li>
+            {% endif %}
+
             <li class="nav-item">
               <a class="nav-link" href="{% url 'reviews:about' %}">About</a>
             </li>
@@ -80,6 +93,7 @@
 
  {% block content %}
  {% endblock %}
+
 
     <!-- Bootstrap core JavaScript -->
     <script src="{% static "js_index/jquery.min.js" %}"></script>
@@ -95,8 +109,38 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.js"></script>
+<script>
+  $(function() {
+
+    $( ".datepicker" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      yearRange: "1900:2012",
+      // You can put more options here.
+
+    });
+    $( "#cariujian" ).keyup(function( event ) {
+       var cari = $("#cariujian").val();
+       window.location = "http://127.0.0.1:8000/blog/krida/ujian?nama="+cari;
+    });
+
+  });
+
+  $(document).ready( function() {
+
+    $("#cari").click( function(event) {
+        var isi = parseInt(document.getElementById("select2-id_collection-container").innerHTML);
+        console.log(isi)
+        window.location = "http://127.0.0.1:8000/blog/krida/update_ujian/"+isi;
+    });
+
+});
 
 
+
+
+  </script>
   </body>
 
 </html>

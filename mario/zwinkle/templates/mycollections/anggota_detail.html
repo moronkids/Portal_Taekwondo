@@ -1,0 +1,117 @@
+{% extends "index_krida.html" %}
+{% load calculate_age %}
+{% block content %}
+<style>
+  .jumbotron {
+    background-color:transparent !important;
+}
+</style>
+    <div class="container-fluid js-scroll-trigger" style="color-background;">
+      <div class="jumbotron vertical-center" style="color-background:none;">
+<div class="card">
+        <div class="card-header">
+            <h1><b>{{ object.id }}</b></h1>
+        </div>
+        <div class="card-body">
+        <table class="table">
+        <!--for inline added titles-->
+
+        <!--end-->
+            {% if object.gambar %}
+    	<tr>
+            <th>Foto</th>
+            <td>
+            <center><img src="{{object.gambar.url}}" height="170" align="center"></center><br>
+            </td>
+        </tr>
+    	{% endif %}
+
+            {% if object.id_reg %}
+            <tr>
+            <th>No ID</th>
+            <td>{{ object.id_reg }}</td>
+        </tr>
+    	{% endif %}
+            {% if object.nama %}
+    	<tr>
+            <th>Nama</th>
+            <td>{{ object.nama }}</td>
+        </tr>
+    	{% endif %}
+    	{% if object.ttl %}
+    	<tr>
+            <th>TTL</th>
+            <td>{{ object.ttl }}</td>
+        </tr>
+    	{% endif %}
+    	{% if object.dojang %}
+    	<tr>
+            <th>Dojang</th>
+            <td>{{ object.dojang }}</td>
+        </tr>
+            {% endif %}
+        {% if object.tanggal_lahir %}
+    	<tr>
+            <th>TTL</th>
+            <td>{{object.tempat_lahir}}, {{ object.tanggal_lahir}}</td>
+        </tr>
+    	{% endif %}
+        {% if object.tanggal_lahir %}
+    	<tr>
+            <th>Umur</th>
+            <td>{{ object.tanggal_lahir|age }} Tahun</td>
+        </tr>
+    	{% endif %}
+        {% if object.hasilujian %}
+    	<tr>
+            <th>Hasil Ujian</th>
+            <td>{{ object.hasilujian }}</td>
+        </tr>
+        {% endif %}
+
+        </table>
+                    <a class="btn btn-outline-info" href="{% url 'reviews:anggota_update' pk=object.id %}">Update</a>
+        <a class="btn btn-outline-danger" href="{% url 'reviews:anggota_delete' pk=object.id %}">Delete</a>
+            <br>
+            <div class="card-header">
+                <h3 style="text-align:center;"><b>HISTORY</b></h3>
+            </div>
+
+              <br>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Ujian Ke</th>
+                <th scope="col">Sabuk Awal</th>
+                <th scope="col">Sabuk Ujian</th>
+                <th scope="col">Waktu</th>
+                <th scope="col">Hasil Ujian</th>
+            </tr>
+            </thead>
+            <thead>
+            {% if object %}
+            {% for title in object.daftar.all %}
+            {% for title in title.ujian.all.reverse %}
+
+                <td scope="row">{{forloop.counter}}</td>
+                <td scope="col">{{title.sabukawal}}</td>
+                <td scope="col">{{title.sabukujian}}</td>
+                <td scope="col">{{title.waktu}}</td>
+                <td scope="col">{{title.hasilujian}}</td>
+                <tr></tr>
+
+            {% endfor %}
+            {% endfor %}
+            {% endif %}
+
+            </thead>
+        </table>
+<!--<a class="btn btn-outline-info" href="{% url 'reviews:collection_update' pk=object.id %}">Update</a>-->
+        <!--<a class="btn btn-outline-danger" href="{% url 'reviews:collection_delete' pk=object.id %}">Delete</a>-->
+
+
+        </div>
+</div>
+      </div>
+    </div>
+{% endblock content %}
