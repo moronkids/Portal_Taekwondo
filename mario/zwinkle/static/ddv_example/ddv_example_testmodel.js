@@ -7,19 +7,40 @@ $(document).ready(function() {
             {orderable: true,
              searchable: true,
              className: "center",
-             targets: [0, 1]
+             targets: [0, 1, 2]
             },
             {
 
-                name: 'nama',
+                name: 'waktu',
+
+                targets: [0]
+            },{
+
+                name: 'waktu',
+
+                targets: [0]
+            },{
+
+                name: 'waktu',
 
                 targets: [0]
             },
             {
 
-                name: 'nama',
+                name: 'waktu',
+                targets: [1]
+            },
+            {
+
+                name: 'waktu',
+                targets: [1]
+            },{
+
+                name: 'waktu',
                 targets: [1]
             }
+
+
         ],
         searching: true,
         processing: true,

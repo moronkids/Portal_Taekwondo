@@ -37,56 +37,40 @@ class IndexView(TemplateView):
 class TestModelList(TemplateView):
     model = CollectionTitle
     template_name = 'testmodel_list.html'
-    # daya
-    def get_context_data(self, **kwargs):
-        context = super(TestModelList, self).get_context_data(**kwargs)
-        # context['history'] = CollectionTitle.objects.all()
-        return context
-
 
 class TestModelListJson(BaseDatatableView):
-    model = Collection
+    model = CollectionTitle
+    columns = ['collection', 'sabukawal','sabukujian','hasilujian', 'waktu']
+    order_columns = ['collection','sabukawal','sabukujian', 'hasilujian', 'waktu']
+    max_display_length = 500
 
-    def prepare_results(self, qs):
-        json_data = []
-        for item in qs:
-            json_data.append([
-                item.nama,
-                item.nama
-            ])
-        return json_data
+    def render_column(self, row, column):
+        # We want to render user as a custom column
+        if column == 'collection':
+            # escape HTML for security reasons
+            return escape('{0}'.format(row.ujian.collection.nama))
+        else:
+            return super(TestModelListJson, self).render_column(row, column)
 
-    # columns and order columns are provided by datatables in the request using "name" in columns definition
-# class LocationAutocompleteView(Select2QuerySetSequenceView):
-#     def get_queryset(self):
-#         dojang = Anggota.objects.all()
-#         peserta = Collection.objects.all()
-#
-#         if self.q:
-#             dojang = Anggota.filter(dojang__icontains=self.q)
-#             peserta = Collection.filter(anggota_uti__nama__icontains=self.q)
-#
-#         # Aggregate querysets
-#         qs = QuerySetSequence(dojang, peserta)
-#
-#         if self.q:
-#             # This would apply the filter on all the querysets
-#             qs = qs.filter(nama__icontains=self.q)
-#
-#         # This will limit each queryset so that they show an equal number
-#         # of results.
-#         qs = self.mixup_querysets(qs)
-#
-#         return qs
+    def filter_queryset(self, qs):
+        # use parameters passed in GET request to filter queryset
 
-# class DojangAutocomplete(autocomplete.Select2QuerySetView):
-#     def get_queryset(self):
-#         qs = Anggota.objects.all()
-#
-#         if self.q:
-#             qs = qs.filter(dojang__istartswith=self.q)
-#
-#         return qs
+        # simple example:
+        search = self.request.GET.get('search[value]', None)
+        if search:
+            qs = qs.filter(ujian__collection__nama__istartswith=search, )
+
+        # # more advanced example using extra parameters
+        # filter_customer = self.request.GET.get('customer', None)
+        #
+        # if filter_customer:
+        #     customer_parts = filter_customer.split(' ')
+        #     qs_params = None
+        #     for part in customer_parts:
+        #         q = Q(customer_firstname__istartswith=part) | Q(customer_lastname__istartswith=part)
+        #         qs_params = qs_params | q if qs_params else q
+        #     qs = qs.filter(qs_params)
+        return qs
 
 class AnggotaAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
